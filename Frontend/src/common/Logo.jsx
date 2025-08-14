@@ -5,7 +5,7 @@ export default function Logo({ variant = "light" }) {
     <div className="flex items-center space-x-2">
       <div className={`w-10 h-10 rounded-full border-2 ${variant === "light" ? "border-white" : "border-blue-700"} shadow bg-white flex items-center justify-center overflow-hidden`}>
         <img
-          src="https://ik.imagekit.io/xzjipji0j/stlogo2.png?updatedAt=1753078639311"
+          src="https://ik.imagekit.io/xzjipji0j/ChatGPT%20Image%20Aug%2011,%202025,%2002_55_13%20PM.png?updatedAt=1754904732212"
           alt="Sawariya Traders Logo"
           className="w-full h-full object-cover rounded-full"
         />
@@ -15,7 +15,7 @@ export default function Logo({ variant = "light" }) {
           variant === "light" ? "text-white" : "text-black"
         }`}
       >
-        Sawariya Traders
+        Hariom Steel
       </span>
     </div>
   )
