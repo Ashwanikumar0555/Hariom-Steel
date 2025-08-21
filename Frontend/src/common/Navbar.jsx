@@ -1,5 +1,3 @@
-
-//////////removed animation ////
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Menu, X, ChevronRight, Quote, Phone, Mail, Search, MapPin } from "lucide-react";
 import { Link, NavLink, useLocation } from "react-router-dom";
@@ -12,22 +10,29 @@ export default function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeAddress, setActiveAddress] = useState(0);
   const menuRef = useRef(null);
   const searchInputRef = useRef(null);
   const location = useLocation();
-  const navHeight = 70;
-  const topbarHeight = 60;
   
-  // Handle scroll events
+  // Professional heights for steel business
+  const navHeight = 50; // Increased for better presence
+  const topbarHeight = 90; // Reduced for better proportion
+  
+  // Enhanced scroll handling with smooth behavior
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY && currentScrollY > 150) {
+    const scrollThreshold = 120;
+    
+    // Hide navbar on scroll down, show on scroll up
+    if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
       setIsVisible(false);
     } else {
       setIsVisible(true);
     }
+    
     setLastScrollY(currentScrollY);
-    setIsScrolled(currentScrollY > 10);
+    setIsScrolled(currentScrollY > 20);
   }, [lastScrollY]);
 
   useEffect(() => {
@@ -38,7 +43,9 @@ export default function Navbar() {
   // Focus search input when opened
   useEffect(() => {
     if (isSearchOpen && searchInputRef.current) {
-      searchInputRef.current.focus();
+      setTimeout(() => {
+        searchInputRef.current.focus();
+      }, 100);
     }
   }, [isSearchOpen]);
 
@@ -77,14 +84,14 @@ export default function Navbar() {
     };
   }, [isMenuOpen, isSearchOpen]);
 
-  // Handle search
+  // Enhanced search functionality
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      // Handle search functionality here
       console.log('Searching for:', searchQuery);
       setIsSearchOpen(false);
       setSearchQuery("");
+      // Add your search logic here
     }
   };
 
@@ -94,49 +101,94 @@ export default function Navbar() {
     { name: "Products", path: "/products", id: "products" },
     { name: "Projects", path: "/projects", id: "projects" },
     { name: "Why Choose Us", path: "/why-choose-us", id: "why-choose-us" },
-    { name: "Contact Us", path: "/contact", id: "contact" },
+    { name: "Contact", path: "/contact", id: "contact" },
   ];
 
-  const popularSearches = ["Steel Pipes", "MS Plates", "TMT Bars", "GI Sheets", "Steel Angles", "Price List"];
+  const popularSearches = [
+    "TMT Rebars", "Steel Angles", "MS Plates", "GI Sheets", 
+    "Steel Channels", "Price List", "Square Bars", "Pipes"
+  ];
 
-  // Helper function to scroll to top after navigation
+  const addresses = [
+    "D-1/115 Phase-2, Mayapuri Industrial Area, New Delhi-110064",
+    "KHASRA NO. - 634, Hiran Kudna Village, Mundka, New Delhi - 110041",
+    "E-126, Bulandshahr Road, Loha Mandi, Industrial Area, Ghaziabad, UP-201009"
+  ];
+
+  // Enhanced smooth scroll navigation
   const handleNavClick = (to, onClick) => {
     if (onClick) onClick();
+    
+    // Close mobile menu
+    setIsMenuOpen(false);
+    
+    // Smooth scroll to top with enhanced easing
     setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 0);
+      window.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth'
+      });
+    }, 50);
   };
 
   return (
     <div>
-      {/* Main Navbar */}
+      {/* Main Professional Navbar */}
       <nav
-        className={`fixed left-0 right-0 z-40 w-full transition-all duration-300 ${
-          isVisible ? 'translate-y-0' : '-translate-y-full'
+        className={`fixed left-0 right-0 z-40 w-full transition-all duration-500 ease-in-out ${
+          isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
         } ${
           isScrolled 
-            ? "bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-200" 
-            : "bg-white/90 backdrop-blur-sm"
+            ? "bg-white/98 backdrop-blur-xl shadow-xl border-b border-gray-100" 
+            : "bg-white/95 backdrop-blur-lg shadow-sm border-b border-gray-50"
         }`}
-        style={{ top: topbarHeight, height: `${navHeight}px` }}
+        style={{ 
+          top: isScrolled ? 0 : topbarHeight, 
+          height: `${navHeight}px` 
+        }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex justify-between items-center h-full">
-            {/* Logo */}
+            {/* Enhanced Logo Section */}
             <div className="flex items-center flex-shrink-0">
-              <Link to="/" className="hover:opacity-90 transition-opacity">
+              <Link 
+                to="/" 
+                className="hover:opacity-90 transition-all duration-300 hover:scale-105"
+                onClick={() => handleNavClick("/")}
+              >
                 <Logo variant="dark" />
               </Link>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1">
+            <div className="hidden xl:flex items-center space-x-1">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.id}
                   to={link.path}
                   className={({ isActive }) => `
-                    relative px-4 py-2 text-sm xl:text-base font-medium rounded-lg transition-all duration-200
+                    relative px-5 py-3 text-base font-medium rounded-xl transition-all duration-300
+                    hover:scale-105 hover:shadow-lg
+                    ${isActive
+                      ? "text-blue-700 bg-gradient-to-r from-blue-50 to-blue-100 font-semibold shadow-md border border-blue-200"
+                      : "text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-blue-100/50"
+                    }
+                  `}
+                  onClick={() => handleNavClick(link.path)}
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+            </div>
+
+            {/* Large screens navigation (lg to xl) */}
+            <div className="hidden lg:flex xl:hidden items-center space-x-1">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.id}
+                  to={link.path}
+                  className={({ isActive }) => `
+                    relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300
                     ${isActive
                       ? "text-blue-700 bg-blue-50 font-semibold"
                       : "text-gray-700 hover:text-blue-600 hover:bg-blue-50/50"
@@ -149,82 +201,109 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Desktop Action Buttons */}
-            <div className="hidden lg:flex items-center space-x-3">
-              {/* Search Button */}
+            {/* Enhanced Desktop Action Buttons */}
+            <div className="hidden lg:flex items-center space-x-4">
+              {/* Professional Search Button */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors duration-200"
-                aria-label="Search"
+                className="group p-3 rounded-xl bg-gray-50 hover:bg-gray-100 text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 hover:shadow-md"
+                aria-label="Search products"
               >
-                <Search className="h-5 w-5" />
+                <Search className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
               </button>
 
-              {/* Quote Button */}
+              {/* Enhanced Quote Button */}
               <Link
                 to="/quote"
-                className="flex items-center space-x-2 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full transition-colors duration-200 shadow-md hover:shadow-lg"
+                onClick={() => handleNavClick("/quote")}
+                className="group flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
-                <Quote className="w-4 h-4" />
+                <Quote className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
                 <span>Get Quote</span>
               </Link>
             </div>
 
-            {/* Mobile Controls */}
-            <div className="lg:hidden flex items-center space-x-2">
+            {/* Enhanced Mobile Controls */}
+            <div className="lg:hidden flex items-center space-x-3">
               {/* Mobile Search Button */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors duration-200"
+                className="p-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-blue-600 transition-all duration-300"
                 aria-label="Search"
               >
                 <Search className="h-5 w-5" />
               </button>
 
-              {/* Mobile Menu Toggle */}
+              {/* Enhanced Mobile Menu Toggle */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors duration-200"
+                className="p-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                 aria-label="Toggle Menu"
               >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                <div className="relative w-6 h-6">
+                  <Menu 
+                    className={`h-6 w-6 absolute inset-0 transition-all duration-300 ${
+                      isMenuOpen ? 'opacity-0 rotate-180' : 'opacity-100 rotate-0'
+                    }`} 
+                  />
+                  <X 
+                    className={`h-6 w-6 absolute inset-0 transition-all duration-300 ${
+                      isMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 rotate-180'
+                    }`} 
+                  />
+                </div>
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Search Overlay */}
+      {/* Enhanced Search Overlay */}
       {isSearchOpen && (
         <div
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-start justify-center pt-20 sm:pt-32 px-4"
+          className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-start justify-center pt-24 sm:pt-32 px-4 transition-all duration-300"
           onClick={() => setIsSearchOpen(false)}
         >
           <div
-            className="w-full max-w-2xl bg-white rounded-xl shadow-2xl overflow-hidden"
+            className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 scale-100 opacity-100"
             onClick={(e) => e.stopPropagation()}
           >
-            <form onSubmit={handleSearch} className="p-4 flex items-center gap-3 border-b border-gray-100">
-              <Search className="w-5 h-5 text-gray-400 flex-shrink-0" />
+            {/* Search Header */}
+            <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 border-b border-blue-200">
+              <h2 className="text-lg font-semibold text-gray-800 mb-1">Search Steel Products</h2>
+              <p className="text-sm text-gray-600">Find the best quality steel products for your needs</p>
+            </div>
+
+            {/* Search Input */}
+            <form onSubmit={handleSearch} className="p-6 flex items-center gap-4 border-b border-gray-100">
+              <Search className="w-6 h-6 text-gray-400 flex-shrink-0" />
               <input
                 ref={searchInputRef}
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search for steel products, services..."
-                className="flex-1 border-none outline-none text-base sm:text-lg px-2 py-1"
+                placeholder="Search for TMT Rebars, Angles, MS Plates, Pipes..."
+                className="flex-1 border-none outline-none text-lg px-3 py-2 bg-gray-50 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-200 transition-all duration-300"
               />
+              <button
+                type="submit"
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200"
+              >
+                Search
+              </button>
               <button
                 type="button"
                 onClick={() => setIsSearchOpen(false)}
-                className="p-2 rounded-full hover:bg-gray-100 flex-shrink-0"
+                className="p-2 rounded-full hover:bg-gray-100 flex-shrink-0 transition-colors duration-200"
               >
                 <X className="w-5 h-5 text-gray-500" />
               </button>
             </form>
-            <div className="p-4">
-              <h3 className="text-sm font-medium text-gray-500 mb-3">Popular Searches</h3>
-              <div className="flex flex-wrap gap-2">
+
+            {/* Popular Searches */}
+            <div className="p-6">
+              <h3 className="text-sm font-semibold text-gray-700 mb-4 uppercase tracking-wide">Popular Products</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                 {popularSearches.map((term) => (
                   <button
                     key={term}
@@ -232,7 +311,7 @@ export default function Navbar() {
                       setSearchQuery(term);
                       handleSearch({ preventDefault: () => {} });
                     }}
-                    className="px-3 py-1.5 bg-gray-100 hover:bg-blue-100 rounded-full text-sm text-gray-700 transition-colors"
+                    className="px-4 py-2 bg-gray-100 hover:bg-blue-100 hover:text-blue-700 rounded-lg text-sm text-gray-700 transition-all duration-200 hover:scale-105 text-left"
                   >
                     {term}
                   </button>
@@ -243,99 +322,145 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* Mobile Navigation Menu */}
+      {/* Enhanced Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div
-          ref={menuRef}
-          className="lg:hidden fixed top-[130px] left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-xl max-h-[calc(100vh-130px)] overflow-y-auto"
-        >
-          <div className="px-4 py-6">
-            {/* Navigation Links */}
-            <div className="space-y-2 mb-6">
-              {navLinks.map((link) => {
-                const isActive = location.pathname === link.path;
-                return (
-                  <Link
-                    key={link.id}
-                    to={link.path}
-                    onClick={() => { setIsMenuOpen(false); handleNavClick(link.path); }}
-                    className={`flex items-center justify-between py-3 px-4 rounded-lg transition-colors duration-200 ${
-                      isActive
-                        ? "text-blue-700 bg-blue-50 font-semibold"
-                        : "text-gray-800 hover:text-blue-700 hover:bg-gray-50"
-                    }`}
-                  >
-                    <span className="text-lg">{link.name}</span>
-                    <ChevronRight className={`h-5 w-5 ${isActive ? "text-blue-600" : "text-gray-400"}`} />
-                  </Link>
-                );
-              })}
-            </div>
+        <div className="lg:hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm">
+          <div
+            ref={menuRef}
+            className="fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ease-out overflow-y-auto"
+            style={{ 
+              marginTop: `${isScrolled ? navHeight : topbarHeight + navHeight}px`, 
+              maxHeight: `calc(100vh - ${isScrolled ? navHeight : topbarHeight + navHeight}px)` 
+            }}
+          >
+            <div className="px-6 py-6">
+             {/* Mobile Header */}
+<div className="relative mb-8 text-center border-b border-gray-200 pb-6">
+  <button
+    onClick={() => setIsMenuOpen(false)}
+    className="absolute top-0 right-0 p-3 rounded-full text-gray-600 
+               hover:bg-gray-100 active:bg-gray-200 transition-colors
+               focus:outline-none focus:ring-2 focus:ring-blue-500"
+    aria-label="Close menu"
+  >
+    <X className="h-5 w-5 sm:h-6 sm:w-6" />
+  </button>
 
-            {/* Mobile Get Quote Button */}
-            <div className="mb-6">
-              <Link
-                to="/quote"
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center justify-center space-x-2 w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200"
-              >
-                <Quote className="h-5 w-5" />
-                <span>Get a Quote</span>
-              </Link>
-            </div>
+  <h2 className="font-bold text-lg sm:text-xl text-gray-800 mb-1 pr-8 sm:pr-0">
+    Hariom Steel Infra Pvt Ltd
+  </h2>
+  <p className="text-blue-600 text-xs sm:text-sm font-medium">
+    Auth. Distributor: JSW Neo Steel (UP)
+  </p>
+  <p className="text-gray-600 text-xs sm:text-sm mt-0.5">
+    Premium Steel Solutions
+  </p>
+</div>
 
-            {/* Quick Contact Section */}
-            <div className="border-t border-gray-200 pt-6">
-              <h3 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-4">Quick Contact</h3>
-              <div className="space-y-3">
-                <a
-                  href="tel:+918708275179"
-                  className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <div className="bg-blue-100 rounded-full p-2">
-                    <Phone className="h-4 w-4 text-blue-600" />
-                  </div>
-                  <div>
-                    <div className="font-medium text-gray-800">+91 870 827 5179</div>
-                    <div className="text-sm text-gray-500">Call us anytime</div>
-                  </div>
-                </a>
+              {/* Enhanced Navigation Links */}
+              <div className="space-y-2 mb-8">
+                {navLinks.map((link) => {
+                  const isActive = location.pathname === link.path;
+                  return (
+                    <Link
+                      key={link.id}
+                      to={link.path}
+                      onClick={() => handleNavClick(link.path)}
+                      className={`flex items-center justify-between py-4 px-4 rounded-xl transition-all duration-300 ${
+                        isActive
+                          ? "text-blue-700 bg-gradient-to-r from-blue-50 to-blue-100 font-semibold shadow-sm border-l-4 border-blue-500"
+                          : "text-gray-800 hover:text-blue-700 hover:bg-gray-50 hover:pl-6"
+                      }`}
+                    >
+                      <span className="text-lg">{link.name}</span>
+                      <ChevronRight className={`h-5 w-5 transition-transform duration-300 ${
+                        isActive ? "text-blue-600 rotate-90" : "text-gray-400"
+                      }`} />
+                    </Link>
+                  );
+                })}
+              </div>
 
-                <a
-                  href="mailto:info@sawariyatraders.in"
-                  className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <div className="bg-blue-100 rounded-full p-2">
-                    <Mail className="h-4 w-4 text-blue-600" />
-                  </div>
-                  <div>
-                    <div className="font-medium text-gray-800">info@sawariyatraders.in</div>
-                    <div className="text-sm text-gray-500">Email us</div>
-                  </div>
-                </a>
-
+              {/* Enhanced Mobile Quote Button */}
+              <div className="mb-8">
                 <Link
-                  to="/contact"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                  to="/quote"
+                  onClick={() => handleNavClick("/quote")}
+                  className="flex items-center justify-center space-x-3 w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg"
                 >
-                  <div className="bg-blue-100 rounded-full p-2">
-                    <MapPin className="h-4 w-4 text-blue-600" />
-                  </div>
-                  <div>
-                    <div className="font-medium text-gray-800">Visit Our Office</div>
-                    <div className="text-sm text-gray-500">Choudhry Dhram Kanta, Govindgarh Road</div>
-                    <div className="text-sm text-gray-500">Ramgarh, Alwar (Raj.)</div>
-                  </div>
+                  <Quote className="h-5 w-5" />
+                  <span>Get a Quote</span>
                 </Link>
               </div>
-            </div>
 
-            {/* Company Info */}
-            <div className="border-t border-gray-200 pt-6 mt-6 text-center">
-              <h2 className="font-bold text-lg text-gray-800 mb-2">SAWARIYA TRADERS</h2>
-              <p className="text-gray-600 mb-1">Premium steel supplier since 2005</p>
-              <p className="text-sm text-gray-500">© {new Date().getFullYear()} All rights reserved</p>
+              {/* Enhanced Quick Contact Section */}
+              <div className="border-t border-gray-200 pt-8">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-6">Our Locations</h3>
+                
+                {/* Address Carousel */}
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-sm font-medium text-gray-700">
+                      Address {activeAddress + 1} of {addresses.length}
+                    </h4>
+                    <div className="flex space-x-2">
+                      <button 
+                        onClick={() => setActiveAddress((prev) => (prev - 1 + addresses.length) % addresses.length)}
+                        className="p-1 rounded-full bg-gray-200 hover:bg-gray-300 transition"
+                        aria-label="Previous address"
+                      >
+                        <ChevronRight className="h-4 w-4 rotate-180" />
+                      </button>
+                      <button 
+                        onClick={() => setActiveAddress((prev) => (prev + 1) % addresses.length)}
+                        className="p-1 rounded-full bg-gray-200 hover:bg-gray-300 transition"
+                        aria-label="Next address"
+                      >
+                        <ChevronRight className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="p-4 bg-gray-50 rounded-xl">
+                    <p className="text-sm text-gray-700 leading-relaxed">{addresses[activeAddress]}</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <a
+                    href="tel:+919313236954"
+                    className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 hover:scale-105"
+                  >
+                    <div className="bg-blue-100 rounded-full p-3 flex-shrink-0">
+                      <Phone className="h-5 w-5 text-blue-600" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-semibold text-gray-800 text-sm">+91 9313236954</div>
+                      <div className="text-xs text-gray-500">Call us anytime</div>
+                    </div>
+                  </a>
+
+                  <a
+                    href="mailto:hariomsteelinfra@gmail.com"
+                    className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 hover:scale-105"
+                  >
+                    <div className="bg-blue-100 rounded-full p-3 flex-shrink-0">
+                      <Mail className="h-5 w-5 text-blue-600" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-semibold text-gray-800 text-sm truncate">hariomsteelinfra@gmail.com</div>
+                      <div className="text-xs text-gray-500">Email us</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="border-t border-gray-200 pt-6 mt-8 text-center">
+                <p className="text-gray-600 mb-2 text-sm">Serving across India</p>
+                <p className="text-xs text-gray-500">
+                  © {new Date().getFullYear()} Hariom Steel Infra Pvt Ltd. All rights reserved.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -343,6 +468,861 @@ export default function Navbar() {
     </div>
   );
 }
+//////////removed animation ////
+// import React, { useState, useEffect, useRef, useCallback } from "react";
+// import { Menu, X, ChevronRight, Quote, Phone, Mail, Search, MapPin } from "lucide-react";
+// import { Link, NavLink, useLocation } from "react-router-dom";
+// import Logo from "../common/Logo";
+
+// export default function Navbar() {
+//   const [isScrolled, setIsScrolled] = useState(false);
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+//   const [isVisible, setIsVisible] = useState(true);
+//   const [lastScrollY, setLastScrollY] = useState(0);
+//   const [isSearchOpen, setIsSearchOpen] = useState(false);
+//   const [searchQuery, setSearchQuery] = useState("");
+//   const menuRef = useRef(null);
+//   const searchInputRef = useRef(null);
+//   const location = useLocation();
+  
+//   // Professional heights for steel business
+//   const navHeight = 50; // Increased for better presence
+//   const topbarHeight = 90; // Reduced for better proportion
+  
+//   // Enhanced scroll handling with smooth behavior
+//   const handleScroll = useCallback(() => {
+//     const currentScrollY = window.scrollY;
+//     const scrollThreshold = 120;
+    
+//     // Hide navbar on scroll down, show on scroll up
+//     if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
+//       setIsVisible(false);
+//     } else {
+//       setIsVisible(true);
+//     }
+    
+//     setLastScrollY(currentScrollY);
+//     setIsScrolled(currentScrollY > 20);
+//   }, [lastScrollY]);
+
+//   useEffect(() => {
+//     window.addEventListener("scroll", handleScroll, { passive: true });
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, [handleScroll]);
+
+//   // Focus search input when opened
+//   useEffect(() => {
+//     if (isSearchOpen && searchInputRef.current) {
+//       setTimeout(() => {
+//         searchInputRef.current.focus();
+//       }, 100);
+//     }
+//   }, [isSearchOpen]);
+
+//   // Close menu when clicking outside
+//   useEffect(() => {
+//     const handleClickOutside = (event) => {
+//       if (menuRef.current && !menuRef.current.contains(event.target) && !event.target.closest('button')) {
+//         setIsMenuOpen(false);
+//       }
+//     };
+//     document.addEventListener("mousedown", handleClickOutside);
+//     return () => document.removeEventListener("mousedown", handleClickOutside);
+//   }, []);
+
+//   // Handle escape key
+//   useEffect(() => {
+//     const handleEscKey = (event) => {
+//       if (event.key === 'Escape') {
+//         setIsMenuOpen(false);
+//         setIsSearchOpen(false);
+//       }
+//     };
+//     document.addEventListener('keydown', handleEscKey);
+//     return () => document.removeEventListener('keydown', handleEscKey);
+//   }, []);
+
+//   // Prevent body scroll when menu is open
+//   useEffect(() => {
+//     if (isMenuOpen || isSearchOpen) {
+//       document.body.style.overflow = 'hidden';
+//     } else {
+//       document.body.style.overflow = '';
+//     }
+//     return () => {
+//       document.body.style.overflow = '';
+//     };
+//   }, [isMenuOpen, isSearchOpen]);
+
+//   // Enhanced search functionality
+//   const handleSearch = (e) => {
+//     e.preventDefault();
+//     if (searchQuery.trim()) {
+//       console.log('Searching for:', searchQuery);
+//       setIsSearchOpen(false);
+//       setSearchQuery("");
+//       // Add your search logic here
+//     }
+//   };
+
+//   const navLinks = [
+//     { name: "Home", path: "/", id: "home" },
+//     { name: "About", path: "/about", id: "about" },
+//     { name: "Products", path: "/products", id: "products" },
+//     { name: "Projects", path: "/projects", id: "projects" },
+//     { name: "Why Choose Us", path: "/why-choose-us", id: "why-choose-us" },
+//     { name: "Contact", path: "/contact", id: "contact" },
+//   ];
+
+//   const popularSearches = [
+//     "Steel Pipes", "MS Plates", "TMT Bars", "GI Sheets", 
+//     "Steel Angles", "Price List", "Structural Steel", "Wire Rods"
+//   ];
+
+//   // Enhanced smooth scroll navigation
+//   const handleNavClick = (to, onClick) => {
+//     if (onClick) onClick();
+    
+//     // Close mobile menu
+//     setIsMenuOpen(false);
+    
+//     // Smooth scroll to top with enhanced easing
+//     setTimeout(() => {
+//       window.scrollTo({ 
+//         top: 0, 
+//         behavior: 'smooth'
+//       });
+//     }, 50);
+//   };
+
+//   return (
+//     <div>
+//       {/* Main Professional Navbar - FIXED: Removed space by setting top to 0 when scrolled */}
+//       <nav
+//         className={`fixed left-0 right-0 z-40 w-full transition-all duration-500 ease-in-out ${
+//           isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+//         } ${
+//           isScrolled 
+//             ? "bg-white/98 backdrop-blur-xl shadow-xl border-b border-gray-100" 
+//             : "bg-white/95 backdrop-blur-lg shadow-sm border-b border-gray-50"
+//         }`}
+//         style={{ 
+//           top: isScrolled ? 0 : topbarHeight, 
+//           height: `${navHeight}px` 
+//         }}
+//       >
+//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+//           <div className="flex justify-between items-center h-full">
+//             {/* Enhanced Logo Section */}
+//             <div className="flex items-center flex-shrink-0">
+//               <Link 
+//                 to="/" 
+//                 className="hover:opacity-90 transition-all duration-300 hover:scale-105"
+//                 onClick={() => handleNavClick("/")}
+//               >
+//                 <Logo variant="dark" />
+//               </Link>
+//             </div>
+
+//             {/* Desktop Navigation - Enhanced */}
+//             <div className="hidden xl:flex items-center space-x-1">
+//               {navLinks.map((link) => (
+//                 <NavLink
+//                   key={link.id}
+//                   to={link.path}
+//                   className={({ isActive }) => `
+//                     relative px-5 py-3 text-base font-medium rounded-xl transition-all duration-300
+//                     hover:scale-105 hover:shadow-lg
+//                     ${isActive
+//                       ? "text-blue-700 bg-gradient-to-r from-blue-50 to-blue-100 font-semibold shadow-md border border-blue-200"
+//                       : "text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-blue-100/50"
+//                     }
+//                   `}
+//                   onClick={() => handleNavClick(link.path)}
+//                 >
+//                   {link.name}
+//                 </NavLink>
+//               ))}
+//             </div>
+
+//             {/* Large screens navigation (lg to xl) */}
+//             <div className="hidden lg:flex xl:hidden items-center space-x-1">
+//               {navLinks.map((link) => (
+//                 <NavLink
+//                   key={link.id}
+//                   to={link.path}
+//                   className={({ isActive }) => `
+//                     relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300
+//                     ${isActive
+//                       ? "text-blue-700 bg-blue-50 font-semibold"
+//                       : "text-gray-700 hover:text-blue-600 hover:bg-blue-50/50"
+//                     }
+//                   `}
+//                   onClick={() => handleNavClick(link.path)}
+//                 >
+//                   {link.name}
+//                 </NavLink>
+//               ))}
+//             </div>
+
+//             {/* Enhanced Desktop Action Buttons */}
+//             <div className="hidden lg:flex items-center space-x-4">
+//               {/* Professional Search Button */}
+//               <button
+//                 onClick={() => setIsSearchOpen(true)}
+//                 className="group p-3 rounded-xl bg-gray-50 hover:bg-gray-100 text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 hover:shadow-md"
+//                 aria-label="Search products"
+//               >
+//                 <Search className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+//               </button>
+
+//               {/* Enhanced Quote Button */}
+//               <Link
+//                 to="/quote"
+//                 onClick={() => handleNavClick("/quote")}
+//                 className="group flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+//               >
+//                 <Quote className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
+//                 <span>Get Quote</span>
+//               </Link>
+//             </div>
+
+//             {/* Enhanced Mobile Controls */}
+//             <div className="lg:hidden flex items-center space-x-3">
+//               {/* Mobile Search Button */}
+//               <button
+//                 onClick={() => setIsSearchOpen(true)}
+//                 className="p-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-blue-600 transition-all duration-300"
+//                 aria-label="Search"
+//               >
+//                 <Search className="h-5 w-5" />
+//               </button>
+
+//               {/* Enhanced Mobile Menu Toggle */}
+//               <button
+//                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+//                 className="p-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+//                 aria-label="Toggle Menu"
+//               >
+//                 <div className="relative w-6 h-6">
+//                   <Menu 
+//                     className={`h-6 w-6 absolute inset-0 transition-all duration-300 ${
+//                       isMenuOpen ? 'opacity-0 rotate-180' : 'opacity-100 rotate-0'
+//                     }`} 
+//                   />
+//                   <X 
+//                     className={`h-6 w-6 absolute inset-0 transition-all duration-300 ${
+//                       isMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 rotate-180'
+//                     }`} 
+//                   />
+//                 </div>
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </nav>
+
+//       {/* Enhanced Search Overlay */}
+//       {isSearchOpen && (
+//         <div
+//           className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-start justify-center pt-24 sm:pt-32 px-4 transition-all duration-300"
+//           onClick={() => setIsSearchOpen(false)}
+//         >
+//           <div
+//             className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 scale-100 opacity-100"
+//             onClick={(e) => e.stopPropagation()}
+//           >
+//             {/* Search Header */}
+//             <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 border-b border-blue-200">
+//               <h2 className="text-lg font-semibold text-gray-800 mb-2">Search Steel Products</h2>
+//               <p className="text-sm text-gray-600">Find the best quality steel products for your needs</p>
+//             </div>
+
+//             {/* Search Input */}
+//             <form onSubmit={handleSearch} className="p-6 flex items-center gap-4 border-b border-gray-100">
+//               <Search className="w-6 h-6 text-gray-400 flex-shrink-0" />
+//               <input
+//                 ref={searchInputRef}
+//                 type="text"
+//                 value={searchQuery}
+//                 onChange={(e) => setSearchQuery(e.target.value)}
+//                 placeholder="Search for steel pipes, plates, TMT bars, angles..."
+//                 className="flex-1 border-none outline-none text-lg px-3 py-2 bg-gray-50 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-200 transition-all duration-300"
+//               />
+//               <button
+//                 type="submit"
+//                 className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200"
+//               >
+//                 Search
+//               </button>
+//               <button
+//                 type="button"
+//                 onClick={() => setIsSearchOpen(false)}
+//                 className="p-2 rounded-full hover:bg-gray-100 flex-shrink-0 transition-colors duration-200"
+//               >
+//                 <X className="w-5 h-5 text-gray-500" />
+//               </button>
+//             </form>
+
+//             {/* Popular Searches */}
+//             <div className="p-6">
+//               <h3 className="text-sm font-semibold text-gray-700 mb-4 uppercase tracking-wide">Popular Products</h3>
+//               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+//                 {popularSearches.map((term) => (
+//                   <button
+//                     key={term}
+//                     onClick={() => {
+//                       setSearchQuery(term);
+//                       handleSearch({ preventDefault: () => {} });
+//                     }}
+//                     className="px-4 py-2 bg-gray-100 hover:bg-blue-100 hover:text-blue-700 rounded-lg text-sm text-gray-700 transition-all duration-200 hover:scale-105 text-left"
+//                   >
+//                     {term}
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       )}
+
+//       {/* Enhanced Mobile Navigation Menu - FIXED: Updated top position */}
+//       {isMenuOpen && (
+//         <div className="lg:hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm">
+//           <div
+//             ref={menuRef}
+//             className="fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ease-out overflow-y-auto"
+//             style={{ 
+//               marginTop: `${isScrolled ? navHeight : topbarHeight + navHeight}px`, 
+//               maxHeight: `calc(100vh - ${isScrolled ? navHeight : topbarHeight + navHeight}px)` 
+//             }}
+//           >
+//             <div className="px-6 py-6">
+//               {/* Mobile Header */}
+//               <div className="mb-8 text-center border-b border-gray-200 pb-6">
+//                 <h2 className="font-bold text-xl text-gray-800 mb-2">SAWARIYA TRADERS</h2>
+//                 <p className="text-gray-600 text-sm">Premium Steel Solutions</p>
+//               </div>
+
+//               {/* Enhanced Navigation Links */}
+//               <div className="space-y-2 mb-8">
+//                 {navLinks.map((link) => {
+//                   const isActive = location.pathname === link.path;
+//                   return (
+//                     <Link
+//                       key={link.id}
+//                       to={link.path}
+//                       onClick={() => handleNavClick(link.path)}
+//                       className={`flex items-center justify-between py-4 px-4 rounded-xl transition-all duration-300 ${
+//                         isActive
+//                           ? "text-blue-700 bg-gradient-to-r from-blue-50 to-blue-100 font-semibold shadow-sm border-l-4 border-blue-500"
+//                           : "text-gray-800 hover:text-blue-700 hover:bg-gray-50 hover:pl-6"
+//                       }`}
+//                     >
+//                       <span className="text-lg">{link.name}</span>
+//                       <ChevronRight className={`h-5 w-5 transition-transform duration-300 ${
+//                         isActive ? "text-blue-600 rotate-90" : "text-gray-400"
+//                       }`} />
+//                     </Link>
+//                   );
+//                 })}
+//               </div>
+
+//               {/* Enhanced Mobile Quote Button */}
+//               <div className="mb-8">
+//                 <Link
+//                   to="/quote"
+//                   onClick={() => handleNavClick("/quote")}
+//                   className="flex items-center justify-center space-x-3 w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg"
+//                 >
+//                   <Quote className="h-5 w-5" />
+//                   <span>Get a Quote</span>
+//                 </Link>
+//               </div>
+
+//               {/* Enhanced Quick Contact Section */}
+//               <div className="border-t border-gray-200 pt-8">
+//                 <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-6">Quick Contact</h3>
+//                 <div className="space-y-4">
+//                   <a
+//                     href="tel:+918708275179"
+//                     className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 hover:scale-105"
+//                   >
+//                     <div className="bg-blue-100 rounded-full p-3">
+//                       <Phone className="h-5 w-5 text-blue-600" />
+//                     </div>
+//                     <div>
+//                       <div className="font-semibold text-gray-800">+91 870 827 5179</div>
+//                       <div className="text-sm text-gray-500">Call us anytime</div>
+//                     </div>
+//                   </a>
+
+//                   <a
+//                     href="mailto:info@sawariyatraders.in"
+//                     className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 hover:scale-105"
+//                   >
+//                     <div className="bg-blue-100 rounded-full p-3">
+//                       <Mail className="h-5 w-5 text-blue-600" />
+//                     </div>
+//                     <div>
+//                       <div className="font-semibold text-gray-800">info@sawariyatraders.in</div>
+//                       <div className="text-sm text-gray-500">Email us</div>
+//                     </div>
+//                   </a>
+
+//                   <Link
+//                     to="/contact"
+//                     onClick={() => handleNavClick("/contact")}
+//                     className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 hover:scale-105"
+//                   >
+//                     <div className="bg-blue-100 rounded-full p-3">
+//                       <MapPin className="h-5 w-5 text-blue-600" />
+//                     </div>
+//                     <div>
+//                       <div className="font-semibold text-gray-800">Visit Our Office</div>
+//                       <div className="text-sm text-gray-500">Choudhry Dhram Kanta, Govindgarh Road</div>
+//                       <div className="text-sm text-gray-500">Ramgarh, Alwar (Raj.)</div>
+//                     </div>
+//                   </Link>
+//                 </div>
+//               </div>
+
+//               {/* Footer */}
+//               <div className="border-t border-gray-200 pt-6 mt-8 text-center">
+//                 <p className="text-gray-600 mb-2">Serving since 2005</p>
+//                 <p className="text-xs text-gray-500">© {new Date().getFullYear()} Sawariya Traders. All rights reserved.</p>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+// import React, { useState, useEffect, useRef, useCallback } from "react";
+// import { Menu, X, ChevronRight, Quote, Phone, Mail, Search, MapPin } from "lucide-react";
+// import { Link, NavLink, useLocation } from "react-router-dom";
+// import Logo from "../common/Logo";
+
+// export default function Navbar() {
+//   const [isScrolled, setIsScrolled] = useState(false);
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+//   const [isVisible, setIsVisible] = useState(true);
+//   const [lastScrollY, setLastScrollY] = useState(0);
+//   const [isSearchOpen, setIsSearchOpen] = useState(false);
+//   const [searchQuery, setSearchQuery] = useState("");
+//   const menuRef = useRef(null);
+//   const searchInputRef = useRef(null);
+//   const location = useLocation();
+  
+//   // Professional heights for steel business
+//   const navHeight = 50; // Increased for better presence
+//   const topbarHeight = 90; // Reduced for better proportion
+  
+//   // Enhanced scroll handling with smooth behavior
+//   const handleScroll = useCallback(() => {
+//     const currentScrollY = window.scrollY;
+//     const scrollThreshold = 120;
+    
+//     // Hide navbar on scroll down, show on scroll up
+//     if (currentScrollY > lastScrollY && currentScrollY > scrollThreshold) {
+//       setIsVisible(false);
+//     } else {
+//       setIsVisible(true);
+//     }
+    
+//     setLastScrollY(currentScrollY);
+//     setIsScrolled(currentScrollY > 20);
+//   }, [lastScrollY]);
+
+//   useEffect(() => {
+//     window.addEventListener("scroll", handleScroll, { passive: true });
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, [handleScroll]);
+
+//   // Focus search input when opened
+//   useEffect(() => {
+//     if (isSearchOpen && searchInputRef.current) {
+//       setTimeout(() => {
+//         searchInputRef.current.focus();
+//       }, 100);
+//     }
+//   }, [isSearchOpen]);
+
+//   // Close menu when clicking outside
+//   useEffect(() => {
+//     const handleClickOutside = (event) => {
+//       if (menuRef.current && !menuRef.current.contains(event.target) && !event.target.closest('button')) {
+//         setIsMenuOpen(false);
+//       }
+//     };
+//     document.addEventListener("mousedown", handleClickOutside);
+//     return () => document.removeEventListener("mousedown", handleClickOutside);
+//   }, []);
+
+//   // Handle escape key
+//   useEffect(() => {
+//     const handleEscKey = (event) => {
+//       if (event.key === 'Escape') {
+//         setIsMenuOpen(false);
+//         setIsSearchOpen(false);
+//       }
+//     };
+//     document.addEventListener('keydown', handleEscKey);
+//     return () => document.removeEventListener('keydown', handleEscKey);
+//   }, []);
+
+//   // Prevent body scroll when menu is open
+//   useEffect(() => {
+//     if (isMenuOpen || isSearchOpen) {
+//       document.body.style.overflow = 'hidden';
+//     } else {
+//       document.body.style.overflow = '';
+//     }
+//     return () => {
+//       document.body.style.overflow = '';
+//     };
+//   }, [isMenuOpen, isSearchOpen]);
+
+//   // Enhanced search functionality
+//   const handleSearch = (e) => {
+//     e.preventDefault();
+//     if (searchQuery.trim()) {
+//       console.log('Searching for:', searchQuery);
+//       setIsSearchOpen(false);
+//       setSearchQuery("");
+//       // Add your search logic here
+//     }
+//   };
+
+//   const navLinks = [
+//     { name: "Home", path: "/", id: "home" },
+//     { name: "About", path: "/about", id: "about" },
+//     { name: "Products", path: "/products", id: "products" },
+//     { name: "Projects", path: "/projects", id: "projects" },
+//     { name: "Why Choose Us", path: "/why-choose-us", id: "why-choose-us" },
+//     { name: "Contact", path: "/contact", id: "contact" },
+//   ];
+
+//   const popularSearches = [
+//     "Steel Pipes", "MS Plates", "TMT Bars", "GI Sheets", 
+//     "Steel Angles", "Price List", "Structural Steel", "Wire Rods"
+//   ];
+
+//   // Enhanced smooth scroll navigation
+//   const handleNavClick = (to, onClick) => {
+//     if (onClick) onClick();
+    
+//     // Close mobile menu
+//     setIsMenuOpen(false);
+    
+//     // Smooth scroll to top with enhanced easing
+//     setTimeout(() => {
+//       window.scrollTo({ 
+//         top: 0, 
+//         behavior: 'smooth'
+//       });
+//     }, 50);
+//   };
+
+//   return (
+//     <div>
+//       {/* Main Professional Navbar */}
+//       <nav
+//         className={`fixed left-0 right-0 z-40 w-full transition-all duration-500 ease-in-out ${
+//           isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+//         } ${
+//           isScrolled 
+//             ? "bg-white/98 backdrop-blur-xl shadow-xl border-b border-gray-100" 
+//             : "bg-white/95 backdrop-blur-lg shadow-sm border-b border-gray-50"
+//         }`}
+//         style={{ top: topbarHeight, height: `${navHeight}px` }}
+//       >
+//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+//           <div className="flex justify-between items-center h-full">
+//             {/* Enhanced Logo Section */}
+//             <div className="flex items-center flex-shrink-0">
+//               <Link 
+//                 to="/" 
+//                 className="hover:opacity-90 transition-all duration-300 hover:scale-105"
+//                 onClick={() => handleNavClick("/")}
+//               >
+//                 <Logo variant="dark" />
+//               </Link>
+//             </div>
+
+//             {/* Desktop Navigation - Enhanced */}
+//             <div className="hidden xl:flex items-center space-x-1">
+//               {navLinks.map((link) => (
+//                 <NavLink
+//                   key={link.id}
+//                   to={link.path}
+//                   className={({ isActive }) => `
+//                     relative px-5 py-3 text-base font-medium rounded-xl transition-all duration-300
+//                     hover:scale-105 hover:shadow-lg
+//                     ${isActive
+//                       ? "text-blue-700 bg-gradient-to-r from-blue-50 to-blue-100 font-semibold shadow-md border border-blue-200"
+//                       : "text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-blue-100/50"
+//                     }
+//                   `}
+//                   onClick={() => handleNavClick(link.path)}
+//                 >
+//                   {link.name}
+//                 </NavLink>
+//               ))}
+//             </div>
+
+//             {/* Large screens navigation (lg to xl) */}
+//             <div className="hidden lg:flex xl:hidden items-center space-x-1">
+//               {navLinks.map((link) => (
+//                 <NavLink
+//                   key={link.id}
+//                   to={link.path}
+//                   className={({ isActive }) => `
+//                     relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300
+//                     ${isActive
+//                       ? "text-blue-700 bg-blue-50 font-semibold"
+//                       : "text-gray-700 hover:text-blue-600 hover:bg-blue-50/50"
+//                     }
+//                   `}
+//                   onClick={() => handleNavClick(link.path)}
+//                 >
+//                   {link.name}
+//                 </NavLink>
+//               ))}
+//             </div>
+
+//             {/* Enhanced Desktop Action Buttons */}
+//             <div className="hidden lg:flex items-center space-x-4">
+//               {/* Professional Search Button */}
+//               <button
+//                 onClick={() => setIsSearchOpen(true)}
+//                 className="group p-3 rounded-xl bg-gray-50 hover:bg-gray-100 text-gray-600 hover:text-blue-600 transition-all duration-300 hover:scale-105 hover:shadow-md"
+//                 aria-label="Search products"
+//               >
+//                 <Search className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+//               </button>
+
+//               {/* Enhanced Quote Button */}
+//               <Link
+//                 to="/quote"
+//                 onClick={() => handleNavClick("/quote")}
+//                 className="group flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+//               >
+//                 <Quote className="w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
+//                 <span>Get Quote</span>
+//               </Link>
+//             </div>
+
+//             {/* Enhanced Mobile Controls */}
+//             <div className="lg:hidden flex items-center space-x-3">
+//               {/* Mobile Search Button */}
+//               <button
+//                 onClick={() => setIsSearchOpen(true)}
+//                 className="p-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-blue-600 transition-all duration-300"
+//                 aria-label="Search"
+//               >
+//                 <Search className="h-5 w-5" />
+//               </button>
+
+//               {/* Enhanced Mobile Menu Toggle */}
+//               <button
+//                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+//                 className="p-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+//                 aria-label="Toggle Menu"
+//               >
+//                 <div className="relative w-6 h-6">
+//                   <Menu 
+//                     className={`h-6 w-6 absolute inset-0 transition-all duration-300 ${
+//                       isMenuOpen ? 'opacity-0 rotate-180' : 'opacity-100 rotate-0'
+//                     }`} 
+//                   />
+//                   <X 
+//                     className={`h-6 w-6 absolute inset-0 transition-all duration-300 ${
+//                       isMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 rotate-180'
+//                     }`} 
+//                   />
+//                 </div>
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       </nav>
+
+//       {/* Enhanced Search Overlay */}
+//       {isSearchOpen && (
+//         <div
+//           className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-start justify-center pt-24 sm:pt-32 px-4 transition-all duration-300"
+//           onClick={() => setIsSearchOpen(false)}
+//         >
+//           <div
+//             className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 scale-100 opacity-100"
+//             onClick={(e) => e.stopPropagation()}
+//           >
+//             {/* Search Header */}
+//             <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 border-b border-blue-200">
+//               <h2 className="text-lg font-semibold text-gray-800 mb-2">Search Steel Products</h2>
+//               <p className="text-sm text-gray-600">Find the best quality steel products for your needs</p>
+//             </div>
+
+//             {/* Search Input */}
+//             <form onSubmit={handleSearch} className="p-6 flex items-center gap-4 border-b border-gray-100">
+//               <Search className="w-6 h-6 text-gray-400 flex-shrink-0" />
+//               <input
+//                 ref={searchInputRef}
+//                 type="text"
+//                 value={searchQuery}
+//                 onChange={(e) => setSearchQuery(e.target.value)}
+//                 placeholder="Search for steel pipes, plates, TMT bars, angles..."
+//                 className="flex-1 border-none outline-none text-lg px-3 py-2 bg-gray-50 rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-200 transition-all duration-300"
+//               />
+//               <button
+//                 type="submit"
+//                 className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200"
+//               >
+//                 Search
+//               </button>
+//               <button
+//                 type="button"
+//                 onClick={() => setIsSearchOpen(false)}
+//                 className="p-2 rounded-full hover:bg-gray-100 flex-shrink-0 transition-colors duration-200"
+//               >
+//                 <X className="w-5 h-5 text-gray-500" />
+//               </button>
+//             </form>
+
+//             {/* Popular Searches */}
+//             <div className="p-6">
+//               <h3 className="text-sm font-semibold text-gray-700 mb-4 uppercase tracking-wide">Popular Products</h3>
+//               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+//                 {popularSearches.map((term) => (
+//                   <button
+//                     key={term}
+//                     onClick={() => {
+//                       setSearchQuery(term);
+//                       handleSearch({ preventDefault: () => {} });
+//                     }}
+//                     className="px-4 py-2 bg-gray-100 hover:bg-blue-100 hover:text-blue-700 rounded-lg text-sm text-gray-700 transition-all duration-200 hover:scale-105 text-left"
+//                   >
+//                     {term}
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       )}
+
+//       {/* Enhanced Mobile Navigation Menu */}
+//       {isMenuOpen && (
+//         <div className="lg:hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm">
+//           <div
+//             ref={menuRef}
+//             className="fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ease-out overflow-y-auto"
+//             style={{ marginTop: `${topbarHeight + navHeight}px`, maxHeight: `calc(100vh - ${topbarHeight + navHeight}px)` }}
+//           >
+//             <div className="px-6 py-6">
+//               {/* Mobile Header */}
+//               <div className="mb-8 text-center border-b border-gray-200 pb-6">
+//                 <h2 className="font-bold text-xl text-gray-800 mb-2">SAWARIYA TRADERS</h2>
+//                 <p className="text-gray-600 text-sm">Premium Steel Solutions</p>
+//               </div>
+
+//               {/* Enhanced Navigation Links */}
+//               <div className="space-y-2 mb-8">
+//                 {navLinks.map((link) => {
+//                   const isActive = location.pathname === link.path;
+//                   return (
+//                     <Link
+//                       key={link.id}
+//                       to={link.path}
+//                       onClick={() => handleNavClick(link.path)}
+//                       className={`flex items-center justify-between py-4 px-4 rounded-xl transition-all duration-300 ${
+//                         isActive
+//                           ? "text-blue-700 bg-gradient-to-r from-blue-50 to-blue-100 font-semibold shadow-sm border-l-4 border-blue-500"
+//                           : "text-gray-800 hover:text-blue-700 hover:bg-gray-50 hover:pl-6"
+//                       }`}
+//                     >
+//                       <span className="text-lg">{link.name}</span>
+//                       <ChevronRight className={`h-5 w-5 transition-transform duration-300 ${
+//                         isActive ? "text-blue-600 rotate-90" : "text-gray-400"
+//                       }`} />
+//                     </Link>
+//                   );
+//                 })}
+//               </div>
+
+//               {/* Enhanced Mobile Quote Button */}
+//               <div className="mb-8">
+//                 <Link
+//                   to="/quote"
+//                   onClick={() => handleNavClick("/quote")}
+//                   className="flex items-center justify-center space-x-3 w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg"
+//                 >
+//                   <Quote className="h-5 w-5" />
+//                   <span>Get a Quote</span>
+//                 </Link>
+//               </div>
+
+//               {/* Enhanced Quick Contact Section */}
+//               <div className="border-t border-gray-200 pt-8">
+//                 <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-6">Quick Contact</h3>
+//                 <div className="space-y-4">
+//                   <a
+//                     href="tel:+918708275179"
+//                     className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 hover:scale-105"
+//                   >
+//                     <div className="bg-blue-100 rounded-full p-3">
+//                       <Phone className="h-5 w-5 text-blue-600" />
+//                     </div>
+//                     <div>
+//                       <div className="font-semibold text-gray-800">+91 870 827 5179</div>
+//                       <div className="text-sm text-gray-500">Call us anytime</div>
+//                     </div>
+//                   </a>
+
+//                   <a
+//                     href="mailto:info@sawariyatraders.in"
+//                     className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 hover:scale-105"
+//                   >
+//                     <div className="bg-blue-100 rounded-full p-3">
+//                       <Mail className="h-5 w-5 text-blue-600" />
+//                     </div>
+//                     <div>
+//                       <div className="font-semibold text-gray-800">info@sawariyatraders.in</div>
+//                       <div className="text-sm text-gray-500">Email us</div>
+//                     </div>
+//                   </a>
+
+//                   <Link
+//                     to="/contact"
+//                     onClick={() => handleNavClick("/contact")}
+//                     className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 hover:scale-105"
+//                   >
+//                     <div className="bg-blue-100 rounded-full p-3">
+//                       <MapPin className="h-5 w-5 text-blue-600" />
+//                     </div>
+//                     <div>
+//                       <div className="font-semibold text-gray-800">Visit Our Office</div>
+//                       <div className="text-sm text-gray-500">Choudhry Dhram Kanta, Govindgarh Road</div>
+//                       <div className="text-sm text-gray-500">Ramgarh, Alwar (Raj.)</div>
+//                     </div>
+//                   </Link>
+//                 </div>
+//               </div>
+
+//               {/* Footer */}
+//               <div className="border-t border-gray-200 pt-6 mt-8 text-center">
+//                 <p className="text-gray-600 mb-2">Serving since 2005</p>
+//                 <p className="text-xs text-gray-500">© {new Date().getFullYear()} Sawariya Traders. All rights reserved.</p>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
 
 // import React, { useState, useEffect, useRef, useCallback } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
