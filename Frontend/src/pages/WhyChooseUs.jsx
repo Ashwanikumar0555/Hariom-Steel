@@ -1,7 +1,6 @@
-
 "use client"
 import React, { useState, useEffect } from "react"
-import { Award, ShieldCheck, Truck, DollarSign, CheckCircle, Users, ChevronLeft, ChevronRight, Star, ArrowRight, Phone, Mail, Menu, X } from "lucide-react"
+import { Award, ShieldCheck, Truck, DollarSign, CheckCircle, Users, ChevronLeft, ChevronRight, Star, ArrowRight, Phone, Mail, Menu, X, Building2, Target, Clock, MapPin, Zap, Trophy } from "lucide-react"
 
 // Mock Link component for demonstration - replace with actual React Router Link
 const Link = ({ to, children, className, ...props }) => (
@@ -12,98 +11,118 @@ const Link = ({ to, children, className, ...props }) => (
 
 const reasons = [
   {
-    icon: <Award className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />,
-    title: "18+ Years of Excellence",
-    description: "Since 2005, delivering unmatched expertise in steel supply for construction projects across India.",
-    stat: "18+ Years",
-    color: "blue"
+    icon: <Building2 className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-blue-600" />,
+    title: "Leading TMT Rebar Stockists",
+    description: "Authorized distributor of JSW Neo Steel (U.P) with comprehensive stock of TMT Rebars across India in all required sizes.",
+    stat: "Pan India",
+    color: "blue",
+    gradient: "from-blue-500 to-blue-600"
   },
   {
-    icon: <ShieldCheck className="h-6 w-6 sm:h-8 sm:w-8 text-emerald-600" />,
-    title: "Certified Quality",
-    description: "100% genuine products with ISO and ISI certifications ensuring reliability and safety standards.",
-    stat: "ISO Certified",
-    color: "emerald"
+    icon: <ShieldCheck className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-emerald-600" />,
+    title: "Premium Steel Brands",
+    description: "We deal with top brands: SAIL, TATA, JSW, JINDAL PANTHER ensuring highest quality and reliability standards.",
+    stat: "Top Brands",
+    color: "emerald",
+    gradient: "from-emerald-500 to-emerald-600"
   },
   {
-    icon: <Users className="h-6 w-6 sm:h-8 sm:w-8 text-purple-600" />,
-    title: "Trusted by Industry Leaders",
-    description: "Preferred by 100+ top builders across Rajasthan for consistent quality and timely delivery.",
-    stat: "100+ Clients",
-    color: "purple"
+    icon: <Users className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-purple-600" />,
+    title: "Industrial & Construction Focus",
+    description: "Specialized in serving various industrial and construction applications with tailored steel solutions.",
+    stat: "Specialized",
+    color: "purple",
+    gradient: "from-purple-500 to-purple-600"
   },
   {
-    icon: <Truck className="h-6 w-6 sm:h-8 sm:w-8 text-orange-600" />,
-    title: "Swift Delivery",
-    description: "Timely deliveries to keep your projects on schedule with our efficient logistics network.",
-    stat: "On-Time",
-    color: "orange"
+    icon: <Target className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-orange-600" />,
+    title: "Complete Steel Range",
+    description: "Full & Short Length TMT Rebars, Angles, Girders, Channels, Square Bars, Plates, Pipes, Sheets available.",
+    stat: "Complete Range",
+    color: "orange",
+    gradient: "from-orange-500 to-orange-600"
   },
   {
-    icon: <DollarSign className="h-6 w-6 sm:h-8 sm:w-8 text-green-600" />,
-    title: "Competitive Pricing",
-    description: "Premium quality steel at prices that fit your project budget without compromising quality.",
-    stat: "Best Price",
-    color: "green"
+    icon: <DollarSign className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-green-600" />,
+    title: "Secondary Steel Products",
+    description: "We provide RASHMI, RATHI, KAMDHENU, JINDAL, PRIME GOLD, SWROOP, RANA, K.L, CENTURY brands.",
+    stat: "Secondary Steel",
+    color: "green",
+    gradient: "from-green-500 to-green-600"
   },
   {
-    icon: <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-indigo-600" />,
-    title: "Seismic-Ready Products",
-    description: "TMT bars designed for earthquake resistance and structural safety meeting all safety norms.",
-    stat: "Safety First",
-    color: "indigo"
+    icon: <CheckCircle className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 text-indigo-600" />,
+    title: "Pan India Supply Network",
+    description: "Strategic locations in Delhi, Ghaziabad with supply network covering entire India for timely deliveries.",
+    stat: "Pan India",
+    color: "indigo",
+    gradient: "from-indigo-500 to-indigo-600"
   },
 ]
+
 const productImages = [
   {
     url: "https://ik.imagekit.io/xzjipji0j/MS%20pipe%203.0.jpg?updatedAt=1752817306895",
-    title: "MS Pipe Heavy Duty",
-    description: "Heavy duty mild steel pipes for construction",
-    category: "Pipes"
+    title: "TMT Rebars Full Length",
+    description: "Premium TMT Rebars from SAIL, TATA, JSW brands",
+    category: "TMT Rebars"
   },
   {
     url: "https://ik.imagekit.io/xzjipji0j/MS%20Pipe%20Steel%20.jpg?updatedAt=1752817306534",
-    title: "Steel Pipes Premium",
-    description: "Professional grade steel pipes",
-    category: "Pipes"
+    title: "Steel Pipes & Channels",
+    description: "Industrial grade pipes and structural channels",
+    category: "Structural Steel"
   },
   {
     url: "https://ik.imagekit.io/xzjipji0j/MS%20Sheet%20Steel.jpg?updatedAt=1752817306502",
-    title: "Steel Sheets Industrial",
-    description: "Premium steel sheets for industrial use",
-    category: "Sheets"
+    title: "Steel Plates & Sheets",
+    description: "High-quality steel plates for industrial applications",
+    category: "Plates & Sheets"
   },
   {
     url: "https://ik.imagekit.io/xzjipji0j/2mm%20MS%20Sheet.jpg?updatedAt=1753072192718",
-    title: "MS Sheet Commercial",
-    description: "High-quality mild steel sheets for construction",
-    category: "Sheets"
+    title: "Angles & Square Bars",
+    description: "Precision engineered angles and square bars",
+    category: "Angles & Bars"
   },
   {
     url: "https://ik.imagekit.io/xzjipji0j/MS%20pipe%202.jpg?updatedAt=1752817334875",
-    title: "MS Pipe Standard",
-    description: "Standard MS Pipe for construction projects",
-    category: "Pipes"
+    title: "Secondary Steel Products",
+    description: "RASHMI, RATHI, KAMDHENU and other secondary brands",
+    category: "Secondary Steel"
   },
   {
     url: "https://ik.imagekit.io/xzjipji0j/ms%20sheet.png?updatedAt=1752817306273",
-    title: "MS Sheet Commercial",
-    description: "High-quality mild steel sheets for construction",
-    category: "Sheets"
+    title: "Girders & Structural Steel",
+    description: "Heavy duty girders for construction projects",
+    category: "Girders"
   },
   {
     url: "https://ik.imagekit.io/xzjipji0j/ms%20pipe%205.png?updatedAt=1752817306520",
-    title: "MS Pipe Structural",
-    description: "Durable mild steel pipes for structural applications",
-    category: "Pipes"
+    title: "Industrial Applications",
+    description: "Specialized steel products for industrial use",
+    category: "Industrial"
   }
 ]
 
 const stats = [
-  { number: "18+", label: "Years Experience", icon: <Award className="h-4 w-4 sm:h-5 sm:w-5" /> },
-  { number: "500+", label: "Projects Completed", icon: <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5" /> },
-  { number: "100+", label: "Happy Clients", icon: <Users className="h-4 w-4 sm:h-5 sm:w-5" /> },
-  { number: "24/7", label: "Customer Support", icon: <Phone className="h-4 w-4 sm:h-5 sm:w-5" /> }
+  { number: "Pan India", label: "Supply Network", icon: <Building2 className="h-4 w-4 sm:h-5 sm:w-5" />, color: "blue" },
+  { number: "JSW", label: "Authorized Distributor", icon: <Award className="h-4 w-4 sm:h-5 sm:w-5" />, color: "emerald" },
+  { number: "All Sizes", label: "TMT Rebars Available", icon: <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5" />, color: "purple" },
+  { number: "24/7", label: "Customer Support", icon: <Phone className="h-4 w-4 sm:h-5 sm:w-5" />, color: "orange" }
+]
+
+const locations = [
+  "D-1/115 Phase-2, Mayapuri Industrial Area, New Delhi-110064",
+  "KHASRA NO. - 634, Hiran Kudna Village, Muneka, New Delhi - 110041",
+  "E-126, Bulandshahr Road, Loha Mandi, Industrial Area, Ghaziabad, UP-201009"
+]
+
+const features = [
+  { icon: <Clock className="h-5 w-5" />, text: "Quick Delivery" },
+  { icon: <Trophy className="h-5 w-5" />, text: "Quality Assured" },
+  { icon: <Zap className="h-5 w-5" />, text: "Competitive Pricing" },
+  { icon: <MapPin className="h-5 w-5" />, text: "Pan India Service" }
 ]
 
 export default function WhyChooseUs() {
@@ -111,6 +130,7 @@ export default function WhyChooseUs() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [hoveredCard, setHoveredCard] = useState(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [isVisible, setIsVisible] = useState({})
 
   useEffect(() => {
     const checkMobile = () => {
@@ -131,6 +151,25 @@ export default function WhyChooseUs() {
     return () => clearInterval(interval)
   }, [isAutoPlaying])
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(prev => ({
+            ...prev,
+            [entry.target.id]: entry.isIntersecting
+          }))
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    const elements = document.querySelectorAll('[data-animate]')
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % productImages.length)
     setIsAutoPlaying(false)
@@ -150,55 +189,84 @@ export default function WhyChooseUs() {
   }
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 sm:top-20 sm:left-20 w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 sm:bottom-20 sm:right-20 w-24 h-24 sm:w-40 sm:h-40 bg-indigo-600 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-60 sm:h-60 bg-purple-600 rounded-full blur-3xl"></div>
+    <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50/50 relative overflow-hidden">
+      {/* Enhanced Background Pattern */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-10 left-10 sm:top-20 sm:left-20 w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 sm:bottom-20 sm:right-20 w-20 h-20 sm:w-32 sm:h-32 lg:w-40 lg:h-40 bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-40 sm:h-40 lg:w-60 lg:h-60 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl relative z-10">
-        {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6 shadow-lg border border-blue-200">
-            <Star className="h-3 w-3 sm:h-4 sm:w-4 fill-current animate-pulse" />
-            <span className="whitespace-nowrap">Industry Leading Steel Supplier</span>
+      {/* Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-10 w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{animationDelay: '0s', animationDuration: '3s'}}></div>
+        <div className="absolute top-1/3 right-20 w-3 h-3 bg-indigo-400 rounded-full animate-bounce" style={{animationDelay: '1s', animationDuration: '4s'}}></div>
+        <div className="absolute bottom-1/4 left-1/4 w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{animationDelay: '2s', animationDuration: '5s'}}></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl relative z-10">
+        {/* Enhanced Header */}
+        <div 
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
+          id="header"
+          data-animate
+        >
+          <div className={`inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-blue-100/80 to-indigo-100/80 backdrop-blur-sm text-blue-800 px-3 sm:px-4 lg:px-6 py-2 sm:py-2.5 lg:py-3 rounded-full text-xs sm:text-sm lg:text-base font-medium mb-4 sm:mb-6 shadow-lg border border-blue-200/50 transition-all duration-700 ${isVisible.header ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <Star className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 fill-current animate-spin" style={{animationDuration: '3s'}} />
+            <span className="whitespace-nowrap">Leading TMT Rebar Stockists in India</span>
+            <Star className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 fill-current animate-spin" style={{animationDuration: '3s', animationDirection: 'reverse'}} />
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-slate-800 leading-tight px-4">
+          <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 sm:mb-6 text-slate-800 leading-tight px-2 sm:px-4 transition-all duration-700 delay-200 ${isVisible.header ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             Why Choose
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent block sm:inline">
-              {" "}Sawariya Traders
+            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent block sm:inline animate-gradient">
+              {" "}Hariom Steel Infra
             </span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed px-4">
-            With over 18 years of expertise, we're Rajasthan's most trusted steel supplier, 
-            delivering certified quality and reliability to builders and contractors nationwide.
+          <p className={`text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed px-4 sm:px-6 transition-all duration-700 delay-400 ${isVisible.header ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            Authorized distributor of JSW Neo Steel (U.P) with comprehensive supply network across India, 
+            delivering premium TMT rebars and steel products for industrial and construction applications with unmatched quality and reliability.
           </p>
+          
+          {/* Feature Pills */}
+          <div className={`flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 mt-6 sm:mt-8 transition-all duration-700 delay-600 ${isVisible.header ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            {features.map((feature, index) => (
+              <div key={index} className="flex items-center gap-2 bg-white/80 backdrop-blur-sm text-slate-700 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium shadow-md border border-slate-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300">
+                <div className="text-blue-600">
+                  {feature.icon}
+                </div>
+                <span>{feature.text}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Stats Section */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-12 sm:mb-16">
+        {/* Enhanced Stats Section */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 xl:gap-8 mb-8 sm:mb-12 lg:mb-16">
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 text-center shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 group"
+              className={`bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-5 lg:p-6 xl:p-8 text-center shadow-lg border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 lg:hover:-translate-y-3 group cursor-pointer transform`}
+              style={{
+                animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
+              }}
             >
-              <div className="bg-gradient-to-br from-blue-100 to-indigo-100 p-2 sm:p-3 rounded-lg sm:rounded-xl w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+              <div className={`bg-gradient-to-br from-${stat.color}-100 to-${stat.color}-200 p-2 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-2xl w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 flex items-center justify-center mx-auto mb-3 sm:mb-4 lg:mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg`}>
                 {stat.icon}
               </div>
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-slate-800 mb-1 sm:mb-2">{stat.number}</div>
-              <div className="text-xs sm:text-sm text-slate-600 font-medium leading-tight">{stat.label}</div>
+              <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-slate-800 mb-1 sm:mb-2 group-hover:text-blue-600 transition-colors">{stat.number}</div>
+              <div className="text-xs sm:text-sm lg:text-base text-slate-600 font-medium leading-tight">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center mb-16 sm:mb-20">
+        {/* Main Content Grid - Enhanced */}
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center mb-12 sm:mb-16 lg:mb-20">
           {/* Enhanced Image Gallery */}
           <div className="relative order-2 lg:order-1">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-6 border border-blue-100">
-              <div className="relative h-64 sm:h-80 md:h-96 rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600 to-indigo-700 shadow-inner">
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-4 lg:p-6 border border-white/50 hover:shadow-3xl transition-all duration-500">
+              <div className="relative h-64 sm:h-80 lg:h-96 xl:h-[28rem] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 shadow-inner">
                 {/* Main Image */}
                 <div className="relative h-full group">
                   <img
@@ -209,57 +277,68 @@ export default function WhyChooseUs() {
                     onMouseLeave={() => !isMobile && setIsAutoPlaying(true)}
                   />
                   
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                  {/* Enhanced Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
                   
-                  {/* Category Badge */}
-                  <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-blue-600/90 backdrop-blur-sm text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
-                    {productImages[currentImageIndex].category}
+                  {/* Animated Category Badge */}
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 lg:top-6 lg:left-6">
+                    <div className="bg-gradient-to-r from-blue-600/90 to-indigo-600/90 backdrop-blur-sm text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm lg:text-base font-medium shadow-lg border border-white/20 animate-pulse">
+                      {productImages[currentImageIndex].category}
+                    </div>
                   </div>
                   
-                  {/* Image Info */}
-                  <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 text-white max-w-[calc(100%-4rem)] sm:max-w-[calc(100%-8rem)]">
-                    <h3 className="text-sm sm:text-lg md:text-xl font-bold mb-1 line-clamp-1">{productImages[currentImageIndex].title}</h3>
-                    <p className="text-xs sm:text-sm text-gray-200 line-clamp-2 leading-tight">{productImages[currentImageIndex].description}</p>
+                  {/* Enhanced Image Info */}
+                  <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 lg:bottom-6 lg:left-6 text-white max-w-[calc(100%-6rem)] sm:max-w-[calc(100%-8rem)]">
+                    <h3 className="text-sm sm:text-lg lg:text-xl xl:text-2xl font-bold mb-1 sm:mb-2 line-clamp-2 leading-tight">{productImages[currentImageIndex].title}</h3>
+                    <p className="text-xs sm:text-sm lg:text-base text-gray-200 line-clamp-2 leading-tight opacity-90">{productImages[currentImageIndex].description}</p>
                   </div>
                   
-                  {/* Navigation Arrows */}
+                  {/* Enhanced Navigation Arrows */}
                   <button
                     onClick={prevImage}
-                    className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full p-2 sm:p-3 transition-all hover:scale-110 group touch-manipulation"
+                    className="absolute left-2 sm:left-3 lg:left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full p-2 sm:p-3 lg:p-4 transition-all hover:scale-110 group-hover:shadow-xl touch-manipulation border border-white/20"
                   >
-                    <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 text-white group-hover:text-blue-200" />
+                    <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-white group-hover:text-blue-200" />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full p-2 sm:p-3 transition-all hover:scale-110 group touch-manipulation"
+                    className="absolute right-2 sm:right-3 lg:right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full p-2 sm:p-3 lg:p-4 transition-all hover:scale-110 group-hover:shadow-xl touch-manipulation border border-white/20"
                   >
-                    <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-white group-hover:text-blue-200" />
+                    <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 text-white group-hover:text-blue-200" />
                   </button>
                 </div>
                 
-                {/* Dot Indicators */}
-                <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 flex gap-1 sm:gap-2">
+                {/* Enhanced Dot Indicators */}
+                <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 lg:bottom-6 lg:right-6 flex gap-1 sm:gap-2">
                   {productImages.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => goToImage(index)}
-                      className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all touch-manipulation ${
-                        currentImageIndex === index ? "bg-white scale-125" : "bg-white/50 hover:bg-white/70"
+                      className={`w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 rounded-full transition-all touch-manipulation border border-white/30 ${
+                        currentImageIndex === index 
+                          ? "bg-white scale-125 shadow-lg" 
+                          : "bg-white/50 hover:bg-white/70 hover:scale-110"
                       }`}
                     />
                   ))}
                 </div>
+
+                {/* Auto-play indicator */}
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 lg:top-6 lg:right-6">
+                  <div className={`w-2 h-2 sm:w-3 sm:h-3 bg-white/60 rounded-full transition-all ${isAutoPlaying ? 'animate-pulse' : 'opacity-40'}`}></div>
+                </div>
               </div>
               
-              {/* Thumbnail Strip */}
-              <div className="flex gap-2 sm:gap-3 mt-3 sm:mt-4 overflow-x-auto pb-2 scrollbar-hide">
+              {/* Enhanced Thumbnail Strip */}
+              <div className="flex gap-2 sm:gap-3 lg:gap-4 mt-4 sm:mt-5 lg:mt-6 overflow-x-auto pb-2 scrollbar-hide">
                 {productImages.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => goToImage(index)}
-                    className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all hover:scale-105 touch-manipulation ${
-                      currentImageIndex === index ? "border-blue-500 shadow-lg" : "border-gray-200 hover:border-blue-300"
+                    className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 xl:w-18 xl:h-18 rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden border-2 transition-all hover:scale-105 touch-manipulation shadow-md ${
+                      currentImageIndex === index 
+                        ? "border-blue-500 shadow-lg scale-105 ring-2 ring-blue-200" 
+                        : "border-gray-200 hover:border-blue-300 hover:shadow-lg"
                     }`}
                   >
                     <img
@@ -272,61 +351,64 @@ export default function WhyChooseUs() {
               </div>
             </div>
             
-            {/* Quality Badge */}
-            <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full shadow-xl border-2 border-white">
+            {/* Enhanced Quality Badge */}
+            <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 lg:-top-6 lg:-right-6 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white px-3 py-2 sm:px-4 sm:py-2 lg:px-6 lg:py-3 rounded-full shadow-2xl border-2 border-white animate-bounce" style={{animationDuration: '3s'}}>
               <div className="flex items-center gap-1 sm:gap-2">
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-3 w-3 sm:h-4 sm:w-4 fill-current text-yellow-300 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
+                    <Star key={i} className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 fill-current text-yellow-300 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
                   ))}
                 </div>
-                <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">Premium Quality</span>
+                <span className="text-xs sm:text-sm lg:text-base font-bold whitespace-nowrap">JSW Authorized</span>
               </div>
             </div>
           </div>
 
-          {/* Content */}
-          <div className="space-y-6 sm:space-y-8 order-1 lg:order-2">
+          {/* Enhanced Content */}
+          <div className="space-y-6 sm:space-y-8 lg:space-y-10 order-1 lg:order-2">
             <div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-slate-800 leading-tight">
-                Premium Steel Solutions for 
-                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent block sm:inline">
-                  {" "}Modern Construction
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 lg:mb-8 text-slate-800 leading-tight">
+                Premium TMT Rebars & 
+                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent block sm:inline animate-gradient">
+                  {" "}Steel Solutions
                 </span>
               </h3>
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-4 sm:mb-6">
-                Our TMT bars and MS products are sourced from top-tier manufacturers, 
-                ensuring superior strength, durability, and compliance with international 
-                ISO and ISI standards for your peace of mind.
+              <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-slate-600 leading-relaxed mb-6 sm:mb-8">
+                As authorized distributor of JSW Neo Steel, we specialize in TMT Rebars (Full Length & Short Length) 
+                from premium brands including SAIL, TATA, JSW, and JINDAL PANTHER for industrial and construction applications 
+                with guaranteed quality and competitive pricing.
               </p>
-              <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl border border-blue-100">
-                <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
-                  <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+              <div className="flex items-center gap-3 sm:gap-4 lg:gap-5 p-4 sm:p-5 lg:p-6 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-blue-100/50 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="bg-gradient-to-r from-blue-100 to-blue-200 p-2 sm:p-3 lg:p-4 rounded-lg sm:rounded-xl flex-shrink-0 shadow-md">
+                  <Building2 className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-blue-600" />
                 </div>
                 <div>
-                  <div className="font-semibold text-slate-800 text-sm sm:text-base">Quality Guaranteed</div>
-                  <div className="text-xs sm:text-sm text-slate-600">ISO & ISI Certified Products</div>
+                  <div className="font-bold text-slate-800 text-sm sm:text-base lg:text-lg">JSW Authorized Distributor</div>
+                  <div className="text-xs sm:text-sm lg:text-base text-slate-600">Premium Steel Brands Available Nationwide</div>
                 </div>
               </div>
             </div>
 
-            {/* Key Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            {/* Enhanced Key Features Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
               {reasons.slice(0, 4).map((reason, index) => (
                 <div
                   key={index}
-                  className="bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer"
+                  className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 shadow-lg border border-white/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 group cursor-pointer"
                   onMouseEnter={() => setHoveredCard(index)}
                   onMouseLeave={() => setHoveredCard(null)}
+                  style={{
+                    animation: `slideInLeft 0.6s ease-out ${index * 0.1}s both`
+                  }}
                 >
-                  <div className="flex items-start gap-3">
-                    <div className="bg-blue-100 p-2 sm:p-3 rounded-lg flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="flex items-start gap-3 sm:gap-4">
+                    <div className={`bg-gradient-to-br ${reason.gradient.replace('from-', 'from-').replace('to-', 'to-')}-100 to-${reason.color}-200 p-2 sm:p-3 rounded-lg sm:rounded-xl flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md`}>
                       {reason.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-xs sm:text-sm font-bold text-blue-600 mb-1">{reason.stat}</div>
-                      <h4 className="font-semibold text-slate-800 text-sm sm:text-base mb-2 line-clamp-2">{reason.title}</h4>
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">{reason.description}</p>
+                      <div className={`text-xs sm:text-sm font-bold text-${reason.color}-600 mb-1 sm:mb-2 uppercase tracking-wider`}>{reason.stat}</div>
+                      <h4 className="font-bold text-slate-800 text-sm sm:text-base lg:text-lg mb-2 sm:mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">{reason.title}</h4>
+                      <p className="text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed line-clamp-3">{reason.description}</p>
                     </div>
                   </div>
                 </div>
@@ -334,114 +416,1148 @@ export default function WhyChooseUs() {
             </div>
 
             {/* Enhanced CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-5 pt-4 sm:pt-6">
               <Link 
                 to="/products" 
-                className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
+                className="group bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-lg sm:rounded-xl lg:rounded-2xl font-bold transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 sm:hover:-translate-y-2 flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg touch-manipulation relative overflow-hidden"
               >
-                <span className="whitespace-nowrap">Explore Our Products</span>
-                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <span className="whitespace-nowrap relative z-10">Explore Steel Products</span>
+                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 group-hover:translate-x-1 transition-transform relative z-10" />
               </Link>
               <Link 
                 to="/quote" 
-                className="group border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all hover:shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
+                className="group border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-lg sm:rounded-xl lg:rounded-2xl font-bold transition-all hover:shadow-xl flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base lg:text-lg touch-manipulation relative overflow-hidden"
               >
-                <span className="whitespace-nowrap">Get Instant Quote</span>
-                <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
+                <div className="absolute inset-0 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                <span className="whitespace-nowrap relative z-10">Get Instant Quote</span>
+                <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6 group-hover:scale-110 transition-transform relative z-10" />
               </Link>
             </div>
           </div>
         </div>
 
         {/* Enhanced Reasons Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+        <div 
+          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16 lg:mb-20"
+          id="reasons-grid"
+          data-animate
+        >
           {reasons.map((reason, index) => (
             <div
               key={index}
-              className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg border border-blue-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-3 group cursor-pointer"
+              className={`bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-3 lg:hover:-translate-y-4 group cursor-pointer relative overflow-hidden ${isVisible['reasons-grid'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
               style={{
-                animationDelay: `${index * 0.1}s`
+                animationDelay: `${index * 0.1}s`,
+                transitionDelay: `${index * 0.1}s`
               }}
+              onMouseEnter={() => setHoveredCard(index + 4)}
+              onMouseLeave={() => setHoveredCard(null)}
             >
-              <div className="bg-gradient-to-br from-blue-100 to-indigo-100 p-3 sm:p-4 rounded-lg sm:rounded-xl w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                {reason.icon}
+              {/* Background Gradient */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${reason.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl sm:rounded-3xl`}></div>
+              
+              {/* Content */}
+              <div className="relative z-10">
+                <div className={`bg-gradient-to-br from-${reason.color}-100 via-${reason.color}-200 to-${reason.color}-300 p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl w-14 h-14 sm:w-16 sm:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20 flex items-center justify-center mb-6 sm:mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-xl border border-white/30`}>
+                  {reason.icon}
+                </div>
+                <div className={`text-xs sm:text-sm font-bold text-${reason.color}-600 mb-2 sm:mb-3 uppercase tracking-wider`}>{reason.stat}</div>
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 text-slate-800 group-hover:text-blue-600 transition-colors leading-tight">{reason.title}</h3>
+                <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed group-hover:text-slate-700 transition-colors">{reason.description}</p>
+                
+                {/* Hover indicator */}
+                <div className={`absolute bottom-4 right-4 w-8 h-8 bg-gradient-to-r ${reason.gradient} rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0`}>
+                  <ArrowRight className="h-4 w-4 text-white" />
+                </div>
               </div>
-              <div className="text-xs font-bold text-blue-600 mb-2 uppercase tracking-wider">{reason.stat}</div>
-              <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-slate-800 group-hover:text-blue-600 transition-colors leading-tight">{reason.title}</h3>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{reason.description}</p>
             </div>
           ))}
         </div>
 
-        {/* Enhanced Bottom CTA */}
-        <div className="text-center">
-          <div className="bg-gradient-to-r from-white/80 to-blue-50/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-blue-100 relative overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl sm:rounded-3xl"></div>
+        {/* Enhanced Bottom CTA Section */}
+        <div 
+          className="text-center"
+          id="bottom-cta"
+          data-animate
+        >
+          <div className={`bg-gradient-to-r from-white/90 via-blue-50/90 to-indigo-50/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl lg:rounded-[3rem] shadow-2xl p-6 sm:p-8 lg:p-12 xl:p-16 border border-white/50 relative overflow-hidden transition-all duration-700 ${isVisible['bottom-cta'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+            {/* Enhanced Background Pattern */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/5 via-indigo-600/5 to-purple-600/5 rounded-2xl sm:rounded-3xl lg:rounded-[3rem]"></div>
+              <div className="absolute -top-20 -left-20 w-40 h-40 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-indigo-400/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
             </div>
             
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
-                <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
-                <span className="whitespace-nowrap">Get Started Today</span>
+              <div className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-blue-100/80 to-indigo-100/80 backdrop-blur-sm text-blue-800 px-4 sm:px-5 lg:px-6 py-2 sm:py-2.5 lg:py-3 rounded-full text-xs sm:text-sm lg:text-base font-bold mb-6 sm:mb-8 shadow-lg border border-blue-200/50 animate-bounce" style={{animationDuration: '3s'}}>
+                <Phone className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+                <span className="whitespace-nowrap">Get Started Today - Call Now!</span>
+                <Phone className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
               </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-slate-800 leading-tight">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 sm:mb-8 text-slate-800 leading-tight">
                 Ready to Build with 
-                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent block sm:inline">
+                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent block sm:inline animate-gradient">
                   {" "}Premium Steel?
                 </span>
               </h3>
-              <p className="text-sm sm:text-base md:text-lg text-slate-600 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
-                Join hundreds of satisfied customers who trust Sawariya Traders for their steel requirements. 
-                Get competitive quotes and expert consultation with our 24/7 customer support.
+              <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-slate-600 mb-8 sm:mb-10 lg:mb-12 max-w-4xl mx-auto leading-relaxed">
+                Join thousands of industrial leaders who trust Hariom Steel Infra for their TMT rebar and steel requirements. 
+                Get competitive quotes with our pan-India supply network, expert consultation, and guaranteed quality assurance.
               </p>
               
-              {/* Contact Info */}
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-6 sm:mb-8">
-                <div className="flex items-center gap-3 text-slate-600 justify-center sm:justify-start">
-                  <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
-                    <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+              {/* Enhanced Contact Info Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-10 lg:mb-12 max-w-4xl mx-auto">
+                <div className="flex items-center gap-4 p-4 sm:p-5 lg:p-6 bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg border border-white/50 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+                  <div className="bg-gradient-to-r from-blue-100 to-blue-200 p-3 sm:p-4 rounded-xl flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md">
+                    <Phone className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-blue-600" />
                   </div>
-                  <div className="text-center sm:text-left">
-                    <div className="font-semibold text-sm sm:text-base">Call Us Now</div>
-                    <div className="text-xs sm:text-sm">+91 87082 75179</div>
+                  <div className="text-left flex-1 min-w-0">
+                    <div className="font-bold text-slate-800 text-sm sm:text-base lg:text-lg mb-1">Call Us Now</div>
+                    <div className="text-xs sm:text-sm lg:text-base text-slate-600 font-medium">+91 93122 36954</div>
+                    <div className="text-xs sm:text-sm lg:text-base text-slate-600 font-medium">+91 93122 40849</div>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 text-slate-600 justify-center sm:justify-start">
-                  <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
-                    <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+                <div className="flex items-center gap-4 p-4 sm:p-5 lg:p-6 bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg border border-white/50 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+                  <div className="bg-gradient-to-r from-emerald-100 to-emerald-200 p-3 sm:p-4 rounded-xl flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md">
+                    <Mail className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-emerald-600" />
                   </div>
-                  <div className="text-center sm:text-left">
-                    <div className="font-semibold text-sm sm:text-base">Email Us</div>
-                    <div className="text-xs sm:text-sm break-all">info@sawariyatraders.com</div>
+                  <div className="text-left flex-1 min-w-0">
+                    <div className="font-bold text-slate-800 text-sm sm:text-base lg:text-lg mb-1">Email Us</div>
+                    <div className="text-xs sm:text-sm lg:text-base text-slate-600 font-medium break-all">hariomsteelinfra@gmail.com</div>
                   </div>
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              {/* Enhanced Branch Locations */}
+              <div className="mb-8 sm:mb-10 lg:mb-12">
+                <h4 className="text-base sm:text-lg lg:text-xl font-bold text-slate-700 mb-4 sm:mb-6 flex items-center justify-center gap-2">
+                  <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+                  Our Strategic Locations Across India
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 text-xs sm:text-sm lg:text-base text-slate-600">
+                  {locations.map((location, index) => (
+                    <div key={index} className="bg-gradient-to-r from-blue-50/80 to-indigo-50/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 shadow-md border border-blue-100/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group">
+                      <div className="flex items-start gap-3">
+                        <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0 group-hover:scale-110 transition-transform">
+                          <Building2 className="h-4 w-4 text-blue-600" />
+                        </div>
+                        <div className="text-left leading-relaxed">{location}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Enhanced Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 lg:gap-6 justify-center">
                 <Link 
                   to="/contact" 
-                  className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
+                  className="group bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white px-8 sm:px-10 lg:px-12 xl:px-14 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl font-bold transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-2 flex items-center justify-center gap-3 text-base sm:text-lg lg:text-xl touch-manipulation relative overflow-hidden"
                 >
-                  <span className="whitespace-nowrap">Contact Us Today</span>
-                  <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <Phone className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 group-hover:rotate-12 transition-transform relative z-10" />
+                  <span className="whitespace-nowrap relative z-10">Contact Us Today</span>
+                  <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 group-hover:translate-x-1 transition-transform relative z-10" />
                 </Link>
                 <Link 
                   to="/products" 
-                  className="group border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all hover:shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
+                  className="group border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 sm:px-10 lg:px-12 xl:px-14 py-4 sm:py-5 lg:py-6 rounded-xl sm:rounded-2xl font-bold transition-all hover:shadow-xl flex items-center justify-center gap-3 text-base sm:text-lg lg:text-xl touch-manipulation relative overflow-hidden"
                 >
-                  <span className="whitespace-nowrap">View Catalog</span>
-                  <Star className="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
+                  <div className="absolute inset-0 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                  <Star className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 group-hover:rotate-180 transition-transform relative z-10" />
+                  <span className="whitespace-nowrap relative z-10">View Steel Catalog</span>
+                  <Trophy className="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 group-hover:scale-110 transition-transform relative z-10" />
                 </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes animate-gradient {
+          0%, 100% {
+            background-size: 200% 200%;
+            background-position: left center;
+          }
+          50% {
+            background-size: 200% 200%;
+            background-position: right center;
+          }
+        }
+
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: animate-gradient 3s ease-in-out infinite;
+        }
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+
+        @media (max-width: 640px) {
+          .container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+        }
+
+        .line-clamp-1 {
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
     </section>
   )
 }
+
+// "use client"
+// import React, { useState, useEffect } from "react"
+// import { Award, ShieldCheck, Truck, DollarSign, CheckCircle, Users, ChevronLeft, ChevronRight, Star, ArrowRight, Phone, Mail, Menu, X, Building2, Target } from "lucide-react"
+
+// // Mock Link component for demonstration - replace with actual React Router Link
+// const Link = ({ to, children, className, ...props }) => (
+//   <a href={to} className={className} {...props}>
+//     {children}
+//   </a>
+// )
+
+// const reasons = [
+//   {
+//     icon: <Building2 className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />,
+//     title: "Leading TMT Rebar Stockists",
+//     description: "Authorized distributor of JSW Neo Steel (U.P) with comprehensive stock of TMT Rebars across India in all required sizes.",
+//     stat: "Pan India",
+//     color: "blue"
+//   },
+//   {
+//     icon: <ShieldCheck className="h-6 w-6 sm:h-8 sm:w-8 text-emerald-600" />,
+//     title: "Premium Steel Brands",
+//     description: "We deal with top brands: SAIL, TATA, JSW, JINDAL PANTHER ensuring highest quality and reliability standards.",
+//     stat: "Top Brands",
+//     color: "emerald"
+//   },
+//   {
+//     icon: <Users className="h-6 w-6 sm:h-8 sm:w-8 text-purple-600" />,
+//     title: "Industrial & Construction Focus",
+//     description: "Specialized in serving various industrial and construction applications with tailored steel solutions.",
+//     stat: "Specialized",
+//     color: "purple"
+//   },
+//   {
+//     icon: <Target className="h-6 w-6 sm:h-8 sm:w-8 text-orange-600" />,
+//     title: "Complete Steel Range",
+//     description: "Full & Short Length TMT Rebars, Angles, Girders, Channels, Square Bars, Plates, Pipes, Sheets available.",
+//     stat: "Complete Range",
+//     color: "orange"
+//   },
+//   {
+//     icon: <DollarSign className="h-6 w-6 sm:h-8 sm:w-8 text-green-600" />,
+//     title: "Secondary Steel Products",
+//     description: "We provide RASHMI, RATHI, KAMDHENU, JINDAL, PRIME GOLD, SWROOP, RANA, K.L, CENTURY brands.",
+//     stat: "Secondary Steel",
+//     color: "green"
+//   },
+//   {
+//     icon: <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-indigo-600" />,
+//     title: "Pan India Supply Network",
+//     description: "Strategic locations in Delhi, Ghaziabad with supply network covering entire India for timely deliveries.",
+//     stat: "Pan India",
+//     color: "indigo"
+//   },
+// ]
+
+// const productImages = [
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/MS%20pipe%203.0.jpg?updatedAt=1752817306895",
+//     title: "TMT Rebars Full Length",
+//     description: "Premium TMT Rebars from SAIL, TATA, JSW brands",
+//     category: "TMT Rebars"
+//   },
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/MS%20Pipe%20Steel%20.jpg?updatedAt=1752817306534",
+//     title: "Steel Pipes & Channels",
+//     description: "Industrial grade pipes and structural channels",
+//     category: "Structural Steel"
+//   },
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/MS%20Sheet%20Steel.jpg?updatedAt=1752817306502",
+//     title: "Steel Plates & Sheets",
+//     description: "High-quality steel plates for industrial applications",
+//     category: "Plates & Sheets"
+//   },
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/2mm%20MS%20Sheet.jpg?updatedAt=1753072192718",
+//     title: "Angles & Square Bars",
+//     description: "Precision engineered angles and square bars",
+//     category: "Angles & Bars"
+//   },
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/MS%20pipe%202.jpg?updatedAt=1752817334875",
+//     title: "Secondary Steel Products",
+//     description: "RASHMI, RATHI, KAMDHENU and other secondary brands",
+//     category: "Secondary Steel"
+//   },
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/ms%20sheet.png?updatedAt=1752817306273",
+//     title: "Girders & Structural Steel",
+//     description: "Heavy duty girders for construction projects",
+//     category: "Girders"
+//   },
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/ms%20pipe%205.png?updatedAt=1752817306520",
+//     title: "Industrial Applications",
+//     description: "Specialized steel products for industrial use",
+//     category: "Industrial"
+//   }
+// ]
+
+// const stats = [
+//   { number: "Pan India", label: "Supply Network", icon: <Building2 className="h-4 w-4 sm:h-5 sm:w-5" /> },
+//   { number: "JSW", label: "Authorized Distributor", icon: <Award className="h-4 w-4 sm:h-5 sm:w-5" /> },
+//   { number: "All Sizes", label: "TMT Rebars Available", icon: <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5" /> },
+//   { number: "24/7", label: "Customer Support", icon: <Phone className="h-4 w-4 sm:h-5 sm:w-5" /> }
+// ]
+
+// const locations = [
+//   "D-1/115 Phase-2, Mayapuri Industrial Area, New Delhi-110064",
+//   "KHASRA NO. - 634, Hiran Kudna Village, Muneka, New Delhi - 110041",
+//   "E-126, Bulandshahr Road, Loha Mandi, Industrial Area, Ghaziabad, UP-201009"
+// ]
+
+// export default function WhyChooseUs() {
+//   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+//   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+//   const [hoveredCard, setHoveredCard] = useState(null)
+//   const [isMobile, setIsMobile] = useState(false)
+
+//   useEffect(() => {
+//     const checkMobile = () => {
+//       setIsMobile(window.innerWidth < 768)
+//     }
+    
+//     checkMobile()
+//     window.addEventListener('resize', checkMobile)
+//     return () => window.removeEventListener('resize', checkMobile)
+//   }, [])
+
+//   useEffect(() => {
+//     if (!isAutoPlaying) return
+    
+//     const interval = setInterval(() => {
+//       setCurrentImageIndex((prev) => (prev + 1) % productImages.length)
+//     }, 4000)
+//     return () => clearInterval(interval)
+//   }, [isAutoPlaying])
+
+//   const nextImage = () => {
+//     setCurrentImageIndex((prev) => (prev + 1) % productImages.length)
+//     setIsAutoPlaying(false)
+//     setTimeout(() => setIsAutoPlaying(true), 5000)
+//   }
+
+//   const prevImage = () => {
+//     setCurrentImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length)
+//     setIsAutoPlaying(false)
+//     setTimeout(() => setIsAutoPlaying(true), 5000)
+//   }
+
+//   const goToImage = (index) => {
+//     setCurrentImageIndex(index)
+//     setIsAutoPlaying(false)
+//     setTimeout(() => setIsAutoPlaying(true), 5000)
+//   }
+
+//   return (
+//     <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+//       {/* Background Pattern */}
+//       <div className="absolute inset-0 opacity-5">
+//         <div className="absolute top-10 left-10 sm:top-20 sm:left-20 w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full blur-3xl"></div>
+//         <div className="absolute bottom-10 right-10 sm:bottom-20 sm:right-20 w-24 h-24 sm:w-40 sm:h-40 bg-indigo-600 rounded-full blur-3xl"></div>
+//         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-60 sm:h-60 bg-purple-600 rounded-full blur-3xl"></div>
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl relative z-10">
+//         {/* Header */}
+//         <div className="text-center mb-12 sm:mb-16">
+//           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6 shadow-lg border border-blue-200">
+//             <Star className="h-3 w-3 sm:h-4 sm:w-4 fill-current animate-pulse" />
+//             <span className="whitespace-nowrap">Leading TMT Rebar Stockists</span>
+//           </div>
+//           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-slate-800 leading-tight px-4">
+//             Why Choose
+//             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent block sm:inline">
+//               {" "}Hariom Steel Infra
+//             </span>
+//           </h2>
+//           <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed px-4">
+//             Authorized distributor of JSW Neo Steel (U.P) with comprehensive supply network across India, 
+//             delivering premium TMT rebars and steel products for industrial and construction applications.
+//           </p>
+//         </div>
+
+//         {/* Stats Section */}
+//         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-12 sm:mb-16">
+//           {stats.map((stat, index) => (
+//             <div
+//               key={index}
+//               className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 text-center shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 group"
+//             >
+//               <div className="bg-gradient-to-br from-blue-100 to-indigo-100 p-2 sm:p-3 rounded-lg sm:rounded-xl w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+//                 {stat.icon}
+//               </div>
+//               <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-slate-800 mb-1 sm:mb-2">{stat.number}</div>
+//               <div className="text-xs sm:text-sm text-slate-600 font-medium leading-tight">{stat.label}</div>
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* Main Content Grid */}
+//         <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center mb-16 sm:mb-20">
+//           {/* Enhanced Image Gallery */}
+//           <div className="relative order-2 lg:order-1">
+//             <div className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-6 border border-blue-100">
+//               <div className="relative h-64 sm:h-80 md:h-96 rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600 to-indigo-700 shadow-inner">
+//                 {/* Main Image */}
+//                 <div className="relative h-full group">
+//                   <img
+//                     src={productImages[currentImageIndex].url}
+//                     alt={productImages[currentImageIndex].title}
+//                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+//                     onMouseEnter={() => !isMobile && setIsAutoPlaying(false)}
+//                     onMouseLeave={() => !isMobile && setIsAutoPlaying(true)}
+//                   />
+                  
+//                   {/* Gradient Overlay */}
+//                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                  
+//                   {/* Category Badge */}
+//                   <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-blue-600/90 backdrop-blur-sm text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
+//                     {productImages[currentImageIndex].category}
+//                   </div>
+                  
+//                   {/* Image Info */}
+//                   <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 text-white max-w-[calc(100%-4rem)] sm:max-w-[calc(100%-8rem)]">
+//                     <h3 className="text-sm sm:text-lg md:text-xl font-bold mb-1 line-clamp-1">{productImages[currentImageIndex].title}</h3>
+//                     <p className="text-xs sm:text-sm text-gray-200 line-clamp-2 leading-tight">{productImages[currentImageIndex].description}</p>
+//                   </div>
+                  
+//                   {/* Navigation Arrows */}
+//                   <button
+//                     onClick={prevImage}
+//                     className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full p-2 sm:p-3 transition-all hover:scale-110 group touch-manipulation"
+//                   >
+//                     <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 text-white group-hover:text-blue-200" />
+//                   </button>
+//                   <button
+//                     onClick={nextImage}
+//                     className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full p-2 sm:p-3 transition-all hover:scale-110 group touch-manipulation"
+//                   >
+//                     <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-white group-hover:text-blue-200" />
+//                   </button>
+//                 </div>
+                
+//                 {/* Dot Indicators */}
+//                 <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 flex gap-1 sm:gap-2">
+//                   {productImages.map((_, index) => (
+//                     <button
+//                       key={index}
+//                       onClick={() => goToImage(index)}
+//                       className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all touch-manipulation ${
+//                         currentImageIndex === index ? "bg-white scale-125" : "bg-white/50 hover:bg-white/70"
+//                       }`}
+//                     />
+//                   ))}
+//                 </div>
+//               </div>
+              
+//               {/* Thumbnail Strip */}
+//               <div className="flex gap-2 sm:gap-3 mt-3 sm:mt-4 overflow-x-auto pb-2 scrollbar-hide">
+//                 {productImages.map((image, index) => (
+//                   <button
+//                     key={index}
+//                     onClick={() => goToImage(index)}
+//                     className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all hover:scale-105 touch-manipulation ${
+//                       currentImageIndex === index ? "border-blue-500 shadow-lg" : "border-gray-200 hover:border-blue-300"
+//                     }`}
+//                   >
+//                     <img
+//                       src={image.url}
+//                       alt={image.title}
+//                       className="w-full h-full object-cover"
+//                     />
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
+            
+//             {/* Quality Badge */}
+//             <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full shadow-xl border-2 border-white">
+//               <div className="flex items-center gap-1 sm:gap-2">
+//                 <div className="flex">
+//                   {[...Array(5)].map((_, i) => (
+//                     <Star key={i} className="h-3 w-3 sm:h-4 sm:w-4 fill-current text-yellow-300 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
+//                   ))}
+//                 </div>
+//                 <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">JSW Authorized</span>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Content */}
+//           <div className="space-y-6 sm:space-y-8 order-1 lg:order-2">
+//             <div>
+//               <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-slate-800 leading-tight">
+//                 Premium TMT Rebars & 
+//                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent block sm:inline">
+//                   {" "}Steel Solutions
+//                 </span>
+//               </h3>
+//               <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-4 sm:mb-6">
+//                 As authorized distributor of JSW Neo Steel, we specialize in TMT Rebars (Full Length & Short Length) 
+//                 from premium brands including SAIL, TATA, JSW, and JINDAL PANTHER for industrial and construction applications.
+//               </p>
+//               <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl border border-blue-100">
+//                 <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+//                   <Building2 className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+//                 </div>
+//                 <div>
+//                   <div className="font-semibold text-slate-800 text-sm sm:text-base">JSW Authorized Distributor</div>
+//                   <div className="text-xs sm:text-sm text-slate-600">Premium Steel Brands Available</div>
+//                 </div>
+//               </div>
+//             </div>
+
+//             {/* Key Features */}
+//             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+//               {reasons.slice(0, 4).map((reason, index) => (
+//                 <div
+//                   key={index}
+//                   className="bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer"
+//                   onMouseEnter={() => setHoveredCard(index)}
+//                   onMouseLeave={() => setHoveredCard(null)}
+//                 >
+//                   <div className="flex items-start gap-3">
+//                     <div className="bg-blue-100 p-2 sm:p-3 rounded-lg flex-shrink-0 group-hover:scale-110 transition-transform">
+//                       {reason.icon}
+//                     </div>
+//                     <div className="flex-1 min-w-0">
+//                       <div className="text-xs sm:text-sm font-bold text-blue-600 mb-1">{reason.stat}</div>
+//                       <h4 className="font-semibold text-slate-800 text-sm sm:text-base mb-2 line-clamp-2">{reason.title}</h4>
+//                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">{reason.description}</p>
+//                     </div>
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+
+//             {/* Enhanced CTA Buttons */}
+//             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+//               <Link 
+//                 to="/products" 
+//                 className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
+//               >
+//                 <span className="whitespace-nowrap">Explore Steel Products</span>
+//                 <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+//               </Link>
+//               <Link 
+//                 to="/quote" 
+//                 className="group border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all hover:shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
+//               >
+//                 <span className="whitespace-nowrap">Get Quote</span>
+//                 <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Enhanced Reasons Grid */}
+//         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+//           {reasons.map((reason, index) => (
+//             <div
+//               key={index}
+//               className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg border border-blue-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-3 group cursor-pointer"
+//               style={{
+//                 animationDelay: `${index * 0.1}s`
+//               }}
+//             >
+//               <div className="bg-gradient-to-br from-blue-100 to-indigo-100 p-3 sm:p-4 rounded-lg sm:rounded-xl w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform shadow-lg">
+//                 {reason.icon}
+//               </div>
+//               <div className="text-xs font-bold text-blue-600 mb-2 uppercase tracking-wider">{reason.stat}</div>
+//               <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-slate-800 group-hover:text-blue-600 transition-colors leading-tight">{reason.title}</h3>
+//               <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{reason.description}</p>
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* Enhanced Bottom CTA */}
+//         <div className="text-center">
+//           <div className="bg-gradient-to-r from-white/80 to-blue-50/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-blue-100 relative overflow-hidden">
+//             {/* Background Pattern */}
+//             <div className="absolute inset-0 opacity-5">
+//               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl sm:rounded-3xl"></div>
+//             </div>
+            
+//             <div className="relative z-10">
+//               <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+//                 <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
+//                 <span className="whitespace-nowrap">Get Started Today</span>
+//               </div>
+//               <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-slate-800 leading-tight">
+//                 Ready to Build with 
+//                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent block sm:inline">
+//                   {" "}Premium Steel?
+//                 </span>
+//               </h3>
+//               <p className="text-sm sm:text-base md:text-lg text-slate-600 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
+//                 Join industrial leaders who trust Hariom Steel Infra for their TMT rebar and steel requirements. 
+//                 Get competitive quotes with our pan-India supply network and expert consultation.
+//               </p>
+              
+//               {/* Contact Info */}
+//               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-6 sm:mb-8">
+//                 <div className="flex items-center gap-3 text-slate-600 justify-center sm:justify-start">
+//                   <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+//                     <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+//                   </div>
+//                   <div className="text-center sm:text-left">
+//                     <div className="font-semibold text-sm sm:text-base">Call Us Now</div>
+//                     <div className="text-xs sm:text-sm">+91 93122 36954 | +91 93122 40849</div>
+//                   </div>
+//                 </div>
+//                 <div className="flex items-center gap-3 text-slate-600 justify-center sm:justify-start">
+//                   <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+//                     <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+//                   </div>
+//                   <div className="text-center sm:text-left">
+//                     <div className="font-semibold text-sm sm:text-base">Email Us</div>
+//                     <div className="text-xs sm:text-sm break-all">hariomsteelinfra@gmail.com</div>
+//                   </div>
+//                 </div>
+//               </div>
+              
+//               {/* Branch Locations */}
+//               <div className="mb-6 sm:mb-8">
+//                 <h4 className="text-sm sm:text-base font-semibold text-slate-700 mb-3">Our Strategic Locations</h4>
+//                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs sm:text-sm text-slate-600">
+//                   {locations.map((location, index) => (
+//                     <div key={index} className="bg-blue-50/50 rounded-lg p-2 sm:p-3">
+//                       {location}
+//                     </div>
+//                   ))}
+//                 </div>
+//               </div>
+              
+//               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+//                 <Link 
+//                   to="/contact" 
+//                   className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
+//                 >
+//                   <span className="whitespace-nowrap">Contact Us Today</span>
+//                   <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+//                 </Link>
+//                 <Link 
+//                   to="/products" 
+//                   className="group border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all hover:shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
+//                 >
+//                   <span className="whitespace-nowrap">View Steel Catalog</span>
+//                   <Star className="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
+//                 </Link>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
+// "use client"
+// import React, { useState, useEffect } from "react"
+// import { Award, ShieldCheck, Truck, DollarSign, CheckCircle, Users, ChevronLeft, ChevronRight, Star, ArrowRight, Phone, Mail, Menu, X } from "lucide-react"
+
+// // Mock Link component for demonstration - replace with actual React Router Link
+// const Link = ({ to, children, className, ...props }) => (
+//   <a href={to} className={className} {...props}>
+//     {children}
+//   </a>
+// )
+
+// const reasons = [
+//   {
+//     icon: <Award className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />,
+//     title: "18+ Years of Excellence",
+//     description: "Since 2005, delivering unmatched expertise in steel supply for construction projects across India.",
+//     stat: "18+ Years",
+//     color: "blue"
+//   },
+//   {
+//     icon: <ShieldCheck className="h-6 w-6 sm:h-8 sm:w-8 text-emerald-600" />,
+//     title: "Certified Quality",
+//     description: "100% genuine products with ISO and ISI certifications ensuring reliability and safety standards.",
+//     stat: "ISO Certified",
+//     color: "emerald"
+//   },
+//   {
+//     icon: <Users className="h-6 w-6 sm:h-8 sm:w-8 text-purple-600" />,
+//     title: "Trusted by Industry Leaders",
+//     description: "Preferred by 100+ top builders across Rajasthan for consistent quality and timely delivery.",
+//     stat: "100+ Clients",
+//     color: "purple"
+//   },
+//   {
+//     icon: <Truck className="h-6 w-6 sm:h-8 sm:w-8 text-orange-600" />,
+//     title: "Swift Delivery",
+//     description: "Timely deliveries to keep your projects on schedule with our efficient logistics network.",
+//     stat: "On-Time",
+//     color: "orange"
+//   },
+//   {
+//     icon: <DollarSign className="h-6 w-6 sm:h-8 sm:w-8 text-green-600" />,
+//     title: "Competitive Pricing",
+//     description: "Premium quality steel at prices that fit your project budget without compromising quality.",
+//     stat: "Best Price",
+//     color: "green"
+//   },
+//   {
+//     icon: <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-indigo-600" />,
+//     title: "Seismic-Ready Products",
+//     description: "TMT bars designed for earthquake resistance and structural safety meeting all safety norms.",
+//     stat: "Safety First",
+//     color: "indigo"
+//   },
+// ]
+// const productImages = [
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/MS%20pipe%203.0.jpg?updatedAt=1752817306895",
+//     title: "MS Pipe Heavy Duty",
+//     description: "Heavy duty mild steel pipes for construction",
+//     category: "Pipes"
+//   },
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/MS%20Pipe%20Steel%20.jpg?updatedAt=1752817306534",
+//     title: "Steel Pipes Premium",
+//     description: "Professional grade steel pipes",
+//     category: "Pipes"
+//   },
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/MS%20Sheet%20Steel.jpg?updatedAt=1752817306502",
+//     title: "Steel Sheets Industrial",
+//     description: "Premium steel sheets for industrial use",
+//     category: "Sheets"
+//   },
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/2mm%20MS%20Sheet.jpg?updatedAt=1753072192718",
+//     title: "MS Sheet Commercial",
+//     description: "High-quality mild steel sheets for construction",
+//     category: "Sheets"
+//   },
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/MS%20pipe%202.jpg?updatedAt=1752817334875",
+//     title: "MS Pipe Standard",
+//     description: "Standard MS Pipe for construction projects",
+//     category: "Pipes"
+//   },
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/ms%20sheet.png?updatedAt=1752817306273",
+//     title: "MS Sheet Commercial",
+//     description: "High-quality mild steel sheets for construction",
+//     category: "Sheets"
+//   },
+//   {
+//     url: "https://ik.imagekit.io/xzjipji0j/ms%20pipe%205.png?updatedAt=1752817306520",
+//     title: "MS Pipe Structural",
+//     description: "Durable mild steel pipes for structural applications",
+//     category: "Pipes"
+//   }
+// ]
+
+// const stats = [
+//   { number: "18+", label: "Years Experience", icon: <Award className="h-4 w-4 sm:h-5 sm:w-5" /> },
+//   { number: "500+", label: "Projects Completed", icon: <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5" /> },
+//   { number: "100+", label: "Happy Clients", icon: <Users className="h-4 w-4 sm:h-5 sm:w-5" /> },
+//   { number: "24/7", label: "Customer Support", icon: <Phone className="h-4 w-4 sm:h-5 sm:w-5" /> }
+// ]
+
+// export default function WhyChooseUs() {
+//   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+//   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+//   const [hoveredCard, setHoveredCard] = useState(null)
+//   const [isMobile, setIsMobile] = useState(false)
+
+//   useEffect(() => {
+//     const checkMobile = () => {
+//       setIsMobile(window.innerWidth < 768)
+//     }
+    
+//     checkMobile()
+//     window.addEventListener('resize', checkMobile)
+//     return () => window.removeEventListener('resize', checkMobile)
+//   }, [])
+
+//   useEffect(() => {
+//     if (!isAutoPlaying) return
+    
+//     const interval = setInterval(() => {
+//       setCurrentImageIndex((prev) => (prev + 1) % productImages.length)
+//     }, 4000)
+//     return () => clearInterval(interval)
+//   }, [isAutoPlaying])
+
+//   const nextImage = () => {
+//     setCurrentImageIndex((prev) => (prev + 1) % productImages.length)
+//     setIsAutoPlaying(false)
+//     setTimeout(() => setIsAutoPlaying(true), 5000)
+//   }
+
+//   const prevImage = () => {
+//     setCurrentImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length)
+//     setIsAutoPlaying(false)
+//     setTimeout(() => setIsAutoPlaying(true), 5000)
+//   }
+
+//   const goToImage = (index) => {
+//     setCurrentImageIndex(index)
+//     setIsAutoPlaying(false)
+//     setTimeout(() => setIsAutoPlaying(true), 5000)
+//   }
+
+//   return (
+//     <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+//       {/* Background Pattern */}
+//       <div className="absolute inset-0 opacity-5">
+//         <div className="absolute top-10 left-10 sm:top-20 sm:left-20 w-20 h-20 sm:w-32 sm:h-32 bg-blue-600 rounded-full blur-3xl"></div>
+//         <div className="absolute bottom-10 right-10 sm:bottom-20 sm:right-20 w-24 h-24 sm:w-40 sm:h-40 bg-indigo-600 rounded-full blur-3xl"></div>
+//         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-60 sm:h-60 bg-purple-600 rounded-full blur-3xl"></div>
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl relative z-10">
+//         {/* Header */}
+//         <div className="text-center mb-12 sm:mb-16">
+//           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6 shadow-lg border border-blue-200">
+//             <Star className="h-3 w-3 sm:h-4 sm:w-4 fill-current animate-pulse" />
+//             <span className="whitespace-nowrap">Industry Leading Steel Supplier</span>
+//           </div>
+//           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-slate-800 leading-tight px-4">
+//             Why Choose
+//             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent block sm:inline">
+//               {" "}Sawariya Traders
+//             </span>
+//           </h2>
+//           <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed px-4">
+//             With over 18 years of expertise, we're Rajasthan's most trusted steel supplier, 
+//             delivering certified quality and reliability to builders and contractors nationwide.
+//           </p>
+//         </div>
+
+//         {/* Stats Section */}
+//         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-12 sm:mb-16">
+//           {stats.map((stat, index) => (
+//             <div
+//               key={index}
+//               className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 text-center shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 group"
+//             >
+//               <div className="bg-gradient-to-br from-blue-100 to-indigo-100 p-2 sm:p-3 rounded-lg sm:rounded-xl w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+//                 {stat.icon}
+//               </div>
+//               <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-slate-800 mb-1 sm:mb-2">{stat.number}</div>
+//               <div className="text-xs sm:text-sm text-slate-600 font-medium leading-tight">{stat.label}</div>
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* Main Content Grid */}
+//         <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center mb-16 sm:mb-20">
+//           {/* Enhanced Image Gallery */}
+//           <div className="relative order-2 lg:order-1">
+//             <div className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-6 border border-blue-100">
+//               <div className="relative h-64 sm:h-80 md:h-96 rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600 to-indigo-700 shadow-inner">
+//                 {/* Main Image */}
+//                 <div className="relative h-full group">
+//                   <img
+//                     src={productImages[currentImageIndex].url}
+//                     alt={productImages[currentImageIndex].title}
+//                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+//                     onMouseEnter={() => !isMobile && setIsAutoPlaying(false)}
+//                     onMouseLeave={() => !isMobile && setIsAutoPlaying(true)}
+//                   />
+                  
+//                   {/* Gradient Overlay */}
+//                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                  
+//                   {/* Category Badge */}
+//                   <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-blue-600/90 backdrop-blur-sm text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
+//                     {productImages[currentImageIndex].category}
+//                   </div>
+                  
+//                   {/* Image Info */}
+//                   <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 text-white max-w-[calc(100%-4rem)] sm:max-w-[calc(100%-8rem)]">
+//                     <h3 className="text-sm sm:text-lg md:text-xl font-bold mb-1 line-clamp-1">{productImages[currentImageIndex].title}</h3>
+//                     <p className="text-xs sm:text-sm text-gray-200 line-clamp-2 leading-tight">{productImages[currentImageIndex].description}</p>
+//                   </div>
+                  
+//                   {/* Navigation Arrows */}
+//                   <button
+//                     onClick={prevImage}
+//                     className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full p-2 sm:p-3 transition-all hover:scale-110 group touch-manipulation"
+//                   >
+//                     <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 text-white group-hover:text-blue-200" />
+//                   </button>
+//                   <button
+//                     onClick={nextImage}
+//                     className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full p-2 sm:p-3 transition-all hover:scale-110 group touch-manipulation"
+//                   >
+//                     <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-white group-hover:text-blue-200" />
+//                   </button>
+//                 </div>
+                
+//                 {/* Dot Indicators */}
+//                 <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 flex gap-1 sm:gap-2">
+//                   {productImages.map((_, index) => (
+//                     <button
+//                       key={index}
+//                       onClick={() => goToImage(index)}
+//                       className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all touch-manipulation ${
+//                         currentImageIndex === index ? "bg-white scale-125" : "bg-white/50 hover:bg-white/70"
+//                       }`}
+//                     />
+//                   ))}
+//                 </div>
+//               </div>
+              
+//               {/* Thumbnail Strip */}
+//               <div className="flex gap-2 sm:gap-3 mt-3 sm:mt-4 overflow-x-auto pb-2 scrollbar-hide">
+//                 {productImages.map((image, index) => (
+//                   <button
+//                     key={index}
+//                     onClick={() => goToImage(index)}
+//                     className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all hover:scale-105 touch-manipulation ${
+//                       currentImageIndex === index ? "border-blue-500 shadow-lg" : "border-gray-200 hover:border-blue-300"
+//                     }`}
+//                   >
+//                     <img
+//                       src={image.url}
+//                       alt={image.title}
+//                       className="w-full h-full object-cover"
+//                     />
+//                   </button>
+//                 ))}
+//               </div>
+//             </div>
+            
+//             {/* Quality Badge */}
+//             <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-3 py-2 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full shadow-xl border-2 border-white">
+//               <div className="flex items-center gap-1 sm:gap-2">
+//                 <div className="flex">
+//                   {[...Array(5)].map((_, i) => (
+//                     <Star key={i} className="h-3 w-3 sm:h-4 sm:w-4 fill-current text-yellow-300 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }} />
+//                   ))}
+//                 </div>
+//                 <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">Premium Quality</span>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Content */}
+//           <div className="space-y-6 sm:space-y-8 order-1 lg:order-2">
+//             <div>
+//               <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-slate-800 leading-tight">
+//                 Premium Steel Solutions for 
+//                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent block sm:inline">
+//                   {" "}Modern Construction
+//                 </span>
+//               </h3>
+//               <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-4 sm:mb-6">
+//                 Our TMT bars and MS products are sourced from top-tier manufacturers, 
+//                 ensuring superior strength, durability, and compliance with international 
+//                 ISO and ISI standards for your peace of mind.
+//               </p>
+//               <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl border border-blue-100">
+//                 <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+//                   <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+//                 </div>
+//                 <div>
+//                   <div className="font-semibold text-slate-800 text-sm sm:text-base">Quality Guaranteed</div>
+//                   <div className="text-xs sm:text-sm text-slate-600">ISO & ISI Certified Products</div>
+//                 </div>
+//               </div>
+//             </div>
+
+//             {/* Key Features */}
+//             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+//               {reasons.slice(0, 4).map((reason, index) => (
+//                 <div
+//                   key={index}
+//                   className="bg-white/80 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer"
+//                   onMouseEnter={() => setHoveredCard(index)}
+//                   onMouseLeave={() => setHoveredCard(null)}
+//                 >
+//                   <div className="flex items-start gap-3">
+//                     <div className="bg-blue-100 p-2 sm:p-3 rounded-lg flex-shrink-0 group-hover:scale-110 transition-transform">
+//                       {reason.icon}
+//                     </div>
+//                     <div className="flex-1 min-w-0">
+//                       <div className="text-xs sm:text-sm font-bold text-blue-600 mb-1">{reason.stat}</div>
+//                       <h4 className="font-semibold text-slate-800 text-sm sm:text-base mb-2 line-clamp-2">{reason.title}</h4>
+//                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">{reason.description}</p>
+//                     </div>
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+
+//             {/* Enhanced CTA Buttons */}
+//             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+//               <Link 
+//                 to="/products" 
+//                 className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
+//               >
+//                 <span className="whitespace-nowrap">Explore Our Products</span>
+//                 <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+//               </Link>
+//               <Link 
+//                 to="/quote" 
+//                 className="group border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all hover:shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
+//               >
+//                 <span className="whitespace-nowrap">Get Instant Quote</span>
+//                 <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Enhanced Reasons Grid */}
+//         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+//           {reasons.map((reason, index) => (
+//             <div
+//               key={index}
+//               className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-lg border border-blue-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-3 group cursor-pointer"
+//               style={{
+//                 animationDelay: `${index * 0.1}s`
+//               }}
+//             >
+//               <div className="bg-gradient-to-br from-blue-100 to-indigo-100 p-3 sm:p-4 rounded-lg sm:rounded-xl w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform shadow-lg">
+//                 {reason.icon}
+//               </div>
+//               <div className="text-xs font-bold text-blue-600 mb-2 uppercase tracking-wider">{reason.stat}</div>
+//               <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-slate-800 group-hover:text-blue-600 transition-colors leading-tight">{reason.title}</h3>
+//               <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{reason.description}</p>
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* Enhanced Bottom CTA */}
+//         <div className="text-center">
+//           <div className="bg-gradient-to-r from-white/80 to-blue-50/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-blue-100 relative overflow-hidden">
+//             {/* Background Pattern */}
+//             <div className="absolute inset-0 opacity-5">
+//               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl sm:rounded-3xl"></div>
+//             </div>
+            
+//             <div className="relative z-10">
+//               <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+//                 <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
+//                 <span className="whitespace-nowrap">Get Started Today</span>
+//               </div>
+//               <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-slate-800 leading-tight">
+//                 Ready to Build with 
+//                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent block sm:inline">
+//                   {" "}Premium Steel?
+//                 </span>
+//               </h3>
+//               <p className="text-sm sm:text-base md:text-lg text-slate-600 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
+//                 Join hundreds of satisfied customers who trust Sawariya Traders for their steel requirements. 
+//                 Get competitive quotes and expert consultation with our 24/7 customer support.
+//               </p>
+              
+//               {/* Contact Info */}
+//               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-6 sm:mb-8">
+//                 <div className="flex items-center gap-3 text-slate-600 justify-center sm:justify-start">
+//                   <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+//                     <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+//                   </div>
+//                   <div className="text-center sm:text-left">
+//                     <div className="font-semibold text-sm sm:text-base">Call Us Now</div>
+//                     <div className="text-xs sm:text-sm">+91 87082 75179</div>
+//                   </div>
+//                 </div>
+//                 <div className="flex items-center gap-3 text-slate-600 justify-center sm:justify-start">
+//                   <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+//                     <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+//                   </div>
+//                   <div className="text-center sm:text-left">
+//                     <div className="font-semibold text-sm sm:text-base">Email Us</div>
+//                     <div className="text-xs sm:text-sm break-all">info@sawariyatraders.com</div>
+//                   </div>
+//                 </div>
+//               </div>
+              
+//               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+//                 <Link 
+//                   to="/contact" 
+//                   className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
+//                 >
+//                   <span className="whitespace-nowrap">Contact Us Today</span>
+//                   <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform" />
+//                 </Link>
+//                 <Link 
+//                   to="/products" 
+//                   className="group border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold transition-all hover:shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base touch-manipulation"
+//                 >
+//                   <span className="whitespace-nowrap">View Catalog</span>
+//                   <Star className="h-4 w-4 sm:h-5 sm:w-5 group-hover:scale-110 transition-transform" />
+//                 </Link>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
 
 //////////////////////////////
 
