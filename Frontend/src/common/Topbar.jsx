@@ -271,7 +271,7 @@ export default function Topbar() {
                   className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded text-xs sm:text-sm transition-colors flex-1"
                   aria-label="Get quote now"
                 >
-                  Get Quote
+                  Chat Now 
                 </button>
                 <button
                   onClick={() => setShowNotification(false)}

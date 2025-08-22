@@ -150,7 +150,7 @@ export default function QuoteForm() {
       // Open WhatsApp with the form data
       try {
         const encodedMessage = encodeURIComponent(message)
-        const whatsappUrl = `https://wa.me/918708275179?text=${encodedMessage}`
+        const whatsappUrl = `https://wa.me/919312236954?text=${encodedMessage}`
         window.open(whatsappUrl, "_blank")
       } catch (error) {
         console.error("Error opening WhatsApp:", error)
@@ -421,7 +421,7 @@ export default function QuoteForm() {
               className="flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-600 py-3 px-6 rounded-md transition-colors"
             >
               <Phone className="h-5 w-5" />
-              <span className="font-medium">+91 87082 75179</span>
+              <span className="font-medium">+91 93122 36954</span>
             </a>
             <WhatsAppButton />
           </div>

@@ -9,28 +9,33 @@ const steelImages = [
   'https://ik.imagekit.io/xzjipji0j/MS%20pipe%202.jpg?updatedAt=1752729921036',
   'https://res.cloudinary.com/dds6yoff3/image/upload/v1752656215/Sariya4_kwzjbm.avif',
   'https://res.cloudinary.com/dds6yoff3/image/upload/v1752658074/MS_pipe_3_sjfzff.jpg',
-  
-  
 ];
 
 // Floating WhatsApp Button
 const FloatingWhatsApp = () => {
-  const whatsappNumber = '8708275179';
-  const whatsappLink = `https://wa.me/91${whatsappNumber}?text=Hello%20Sawariya%20Traders,%20I'm%20interested%20in%20your%20steel%20products!`;
+  const whatsappNumber = '9312236954';
+  const whatsappLink = `https://wa.me/91${whatsappNumber}?text=Hello%20Hariom%20Steel%20Infra,%20I'm%20interested%20in%20your%20steel%20products!`;
 
   return (
-    <div>
-      
-    </div>
+    <a 
+      href={whatsappLink} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 animate-pulse"
+    >
+      <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.445.099-.149.099-.347-.025-.496-.124-.149-.546-.694-.892-1.04-.346-.347-.669-.347-.966-.347-.297 0-.496.099-.669.297-.173.198-.669.793-.669 1.937 0 1.144.793 2.258.892 2.406.099.149 1.427 2.159 3.465 3.028.495.223.892.396 1.238.495.347.099.644.099.842.05.297-.099.892-.396 1.04-.694.149-.297.297-.595.297-.892 0-.297-.124-.496-.421-.645zM12 1.5C6.201 1.5 1.5 6.201 1.5 12c0 1.834.474 3.557 1.304 5.07L1.5 21l3.96-1.287A10.46 10.46 0 0012 22.5c5.799 0 10.5-4.701 10.5-10.5S17.799 1.5 12 1.5z" />
+      </svg>
+    </a>
   );
 };
 
 // Stats Component
 const StatsSection = () => {
   const stats = [
-    // { icon: Users, number: '500+', label: 'Happy Clients' },
+    // { icon: Users, number: '1000+', label: 'Happy Clients' },
     // { icon: Award, number: '15+', label: 'Years Experience' },
-    // { icon: Truck, number: '1000+', label: 'Projects Delivered' },
+    // { icon: Truck, number: '5000+', label: 'Projects Delivered' },
     // { icon: Shield, number: '100%', label: 'Quality Assured' }
   ];
 
@@ -73,15 +78,24 @@ export default function HeroSection() {
     });
   };
 
-  const whatsappNumber = '8708275179';
-  const whatsappLink = `https://wa.me/91${whatsappNumber}?text=Hello%20Sawariya%20Traders,%20I'm%20interested%20in%20your%20steel%20products!`;
+  const whatsappNumber = '9312236954';
+  const whatsappLink = `https://wa.me/91${whatsappNumber}?text=Hello%20Hariom%20Steel%20Infra%20Pvt%20Ltd,%20I'm%20interested%20in%20your%20steel%20products!`;
 
   const trustIndicators = [
     { icon: Shield, text: 'Certified Quality' },
     { icon: Clock, text: 'Reliable Delivery' },
     { icon: DollarSign, text: 'Best Prices' },
-    { icon: Truck, text: 'Nationwide Shipping' },
+    { icon: Truck, text: 'Nationwide Supply' },
   ];
+
+  const specializations = [
+    'TMT Rebars (Full Length & Short Length)',
+    'Angle, Girder, Channel, Square Bars',
+    'Plates, Pipes, Sheets',
+    'Secondary Steel Products'
+  ];
+
+  const brands = ['SAIL', 'TATA', 'JSW', 'JINDAL PANTHER', 'SHYAM STEEL', 'ELECTRO STEEL'];
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-gray-900 via-blue-950 to-gray-800">
@@ -123,7 +137,7 @@ export default function HeroSection() {
             }`}
           >
             <span className="text-blue-200 font-semibold text-sm sm:text-base tracking-wide uppercase">
-              Leading Steel Supplier Since 2005
+              Leading Stockists & Suppliers of TMT Rebars
             </span>
           </div>
 
@@ -135,14 +149,14 @@ export default function HeroSection() {
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-3 sm:mb-4 leading-tight tracking-tight text-white drop-shadow-2xl">
               <span className="block bg-gradient-to-r from-white to-blue-300 bg-clip-text text-transparent">
-                SAWARIYA
+                HARIOM STEEL
               </span>
-              <span className="block bg-gradient-to-r from-white to-blue-300 bg-clip-text text-transparent">
-                TRADERS
+              <span className="block bg-gradient-to-r from-blue-300 to-white bg-clip-text text-transparent">
+                INFRA PVT LTD
               </span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light text-blue-100 tracking-wide">
-              Your Trusted Partner in Steel Excellence
+              Auth. Distributor: JSW Neo Steel (U.P)
             </p>
           </div>
 
@@ -152,9 +166,34 @@ export default function HeroSection() {
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            <p className="text-base sm:text-lg md:text-xl text-gray-100 max-w-2xl leading-relaxed">
-              Delivering premium-grade steel solutions for construction and industrial applications, crafted with precision and backed by decades of expertise.
+            <p className="text-base sm:text-lg md:text-xl text-gray-100 max-w-3xl leading-relaxed mb-4">
+              We are leading stockists and suppliers of TMT Rebars across India. We supply TMT Rebars in all required sizes for various industrial and construction applications.
             </p>
+            
+            {/* Specializations */}
+            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 sm:p-6 border border-white/20 mb-4">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-3">We Specialize In:</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {specializations.map((item, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <Shield className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                    <span className="text-sm text-gray-200">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Brands */}
+            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 sm:p-6 border border-white/20">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-3">Brands:</h3>
+              <div className="flex flex-wrap gap-2">
+                {brands.map((brand, index) => (
+                  <span key={index} className="bg-blue-600/30 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">
+                    {brand}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Contact Information */}
@@ -163,40 +202,75 @@ export default function HeroSection() {
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            <div className="flex flex-col gap-4 sm:gap-6">
-              <div className="flex items-start sm:items-center gap-3 sm:gap-4 text-gray-100">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              <div className="flex items-start gap-3 sm:gap-4 text-gray-100">
+                <div className="bg-blue-700/20 p-2 sm:p-3 rounded-full flex-shrink-0">
+                  <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-blue-400" />
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-blue-200">Phone:</div>
+                  <a
+                    href="tel:+919312236954"
+                    className="hover:text-blue-400 transition-colors text-sm sm:text-base font-medium"
+                  >
+                    +91 93122 36954
+                  </a>
+                  <br />
+                  <a
+                    href="tel:+919312240849"
+                    className="hover:text-blue-400 transition-colors text-sm sm:text-base font-medium"
+                  >
+                    +91 93122 40849
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 sm:gap-4 text-gray-100">
                 <div className="bg-blue-700/20 p-2 sm:p-3 rounded-full flex-shrink-0">
                   <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-blue-400" />
                 </div>
-                <span className="text-sm sm:text-base leading-relaxed">
-                  Choudhry Dhram Kanta, Govindgarh Road, Ramgarh, Alwar (Raj.)
-                </span>
-              </div>
-              <div className="flex items-center gap-3 sm:gap-4 text-gray-100">
-                <div className="bg-blue-700/20 p-2 sm:p-3 rounded-full">
-                  <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-blue-400" />
+                <div>
+                  <div className="text-sm font-medium text-blue-200">Email:</div>
+                  <a
+                    href="mailto:Hariomsteelinfra@gmail.com"
+                    className="hover:text-blue-400 transition-colors text-sm leading-relaxed"
+                  >
+                    Hariomsteelinfra@gmail.com
+                  </a>
                 </div>
-                <a
-                  href={`tel:+91${whatsappNumber}`}
-                  className="hover:text-blue-400 transition-colors text-sm sm:text-base font-medium"
-                >
-                  +91 87082 75179
-                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Branch Offices */}
+          <div
+            className={`mb-6 sm:mb-8 transition-all duration-1000 delay-500 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 sm:p-6 border border-white/20">
+              <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                <MapPin className="h-5 w-5 text-blue-400" />
+                Branch Office & Godown:
+              </h3>
+              <div className="space-y-2 text-sm text-gray-200">
+                <div>• D-1/115 Phase-2, Mayapuri Industrial Area, New Delhi-110064</div>
+                <div>• KHASRA NO. - 634, Hiran Kudna Village, Muneka, New Delhi - 110041</div>
+                <div>• E-126, Bulandshahr Road, Loha Mandi, Industrial Area, Ghaziabad, UP-201009</div>
               </div>
             </div>
           </div>
 
           {/* Action Buttons */}
           <div
-            className={`mb-8 sm:mb-12 transition-all duration-1000 delay-500 ${
+            className={`mb-8 sm:mb-12 transition-all duration-1000 delay-600 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link to="/quote" aria-label="Request a Quote">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-sm sm:text-base shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center justify-center gap-2">
+                <button className="bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-sm sm:text-base shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center justify-center gap-2">
                   <FileText className="h-4 w-4 sm:h-5 sm:w-5" />
-                  Request a Quote
+                  Feel free to reach out for specific requirements or inquiries!
                 </button>
               </Link>
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
@@ -218,7 +292,7 @@ export default function HeroSection() {
 
           {/* Trust Indicators */}
           <div
-            className={`mb-8 sm:mb-12 transition-all duration-1000 delay-600 ${
+            className={`mb-8 sm:mb-12 transition-all duration-1000 delay-700 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
@@ -236,35 +310,304 @@ export default function HeroSection() {
 
           {/* Stats Section */}
           <div
-            className={`transition-all duration-1000 delay-700 ${
+            className={`transition-all duration-1000 delay-800 ${
               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
             <StatsSection />
           </div>
+
+          {/* We Provide Steel Across India Banner */}
+          {/* <div
+            className={`mt-8 sm:mt-12 transition-all duration-1000 delay-900 ${
+              isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+          >
+            <div className="bg-gradient-to-r from-blue-600/20 to-red-600/20 backdrop-blur-lg rounded-xl p-6 sm:p-8 border border-white/20 text-center">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+                We Provide Steel Across India!
+              </h2>
+              <div className="flex justify-center">
+                <Truck className="h-12 w-12 text-blue-400 animate-bounce" />
+              </div>
+            </div>
+          </div> */}
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
-      <div
-        className={`absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer transition-all duration-1000 delay-800 ${
-          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-        }`}
-        onClick={scrollToNextSection}
-      >
-        <div className="flex flex-col items-center">
-          <span className="text-gray-200 text-sm sm:text-base font-medium mb-1 sm:mb-2">Explore More</span>
-          <div className="animate-bounce">
-            <ChevronDown className="h-6 w-6 sm:h-8 sm:w-8 text-blue-400" />
-          </div>
-        </div>
-      </div>
+    
 
       {/* Floating WhatsApp Button */}
-      <FloatingWhatsApp />
+      {/* <FloatingWhatsApp /> */}
     </section>
   );
 }
+// import React, { useState, useEffect } from 'react';
+// import { ChevronDown, Phone, MapPin, ShoppingCart, FileText, Shield, Clock, DollarSign, Award, Truck, Users } from 'lucide-react';
+// import { Link } from "react-router-dom";
+
+// // Steel images
+// const steelImages = [
+//   'https://res.cloudinary.com/dds6yoff3/image/upload/v1752656213/sariya_2_rjblxh.jpg',
+//   'https://ik.imagekit.io/xzjipji0j/MS%20pipe%202.jpg?updatedAt=1752729921036',
+//   'https://res.cloudinary.com/dds6yoff3/image/upload/v1752656215/Sariya4_kwzjbm.avif',
+//   'https://res.cloudinary.com/dds6yoff3/image/upload/v1752658074/MS_pipe_3_sjfzff.jpg',
+  
+  
+// ];
+
+// // Floating WhatsApp Button
+// const FloatingWhatsApp = () => {
+//   const whatsappNumber = '9312236954';
+//   const whatsappLink = `https://wa.me/91${whatsappNumber}?text=Hello%20Sawariya%20Traders,%20I'm%20interested%20in%20your%20steel%20products!`;
+
+//   return (
+//     <div>
+      
+//     </div>
+//   );
+// };
+
+// // Stats Component
+// const StatsSection = () => {
+//   const stats = [
+//     // { icon: Users, number: '500+', label: 'Happy Clients' },
+//     // { icon: Award, number: '15+', label: 'Years Experience' },
+//     // { icon: Truck, number: '1000+', label: 'Projects Delivered' },
+//     // { icon: Shield, number: '100%', label: 'Quality Assured' }
+//   ];
+
+//   return (
+//     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mt-8 sm:mt-12">
+//       {stats.map((stat, index) => (
+//         <div
+//           key={index}
+//           className="bg-white/10 backdrop-blur-lg rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 text-center border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
+//         >
+//           <stat.icon className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-blue-400 mx-auto mb-2 sm:mb-3" />
+//           <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-1 sm:mb-2">{stat.number}</div>
+//           <div className="text-xs sm:text-sm text-gray-300">{stat.label}</div>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// // Hero Section Component
+// export default function HeroSection() {
+//   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+//   const [isLoaded, setIsLoaded] = useState(false);
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % steelImages.length);
+//     }, 3000);
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   useEffect(() => {
+//     setIsLoaded(true);
+//   }, []);
+
+//   const scrollToNextSection = () => {
+//     window.scrollTo({
+//       top: window.innerHeight,
+//       behavior: 'smooth',
+//     });
+//   };
+
+//   const whatsappNumber = '9312236954';
+//   const whatsappLink = `https://wa.me/91${whatsappNumber}?text=Hello%20Sawariya%20Traders,%20I'm%20interested%20in%20your%20steel%20products!`;
+
+//   const trustIndicators = [
+//     { icon: Shield, text: 'Certified Quality' },
+//     { icon: Clock, text: 'Reliable Delivery' },
+//     { icon: DollarSign, text: 'Best Prices' },
+//     { icon: Truck, text: 'Nationwide Shipping' },
+//   ];
+
+//   return (
+//     <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-gray-900 via-blue-950 to-gray-800">
+//       {/* Background Image Carousel */}
+//       <div className="absolute inset-0 z-0">
+//         {steelImages.map((image, index) => (
+//           <div
+//             key={index}
+//             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+//               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+//             }`}
+//           >
+//             <div className="absolute inset-0 bg-gradient-to-br from-gray-900/70 via-blue-950/60 to-gray-800/70 z-10" />
+//             <img
+//               src={image}
+//               alt={`Steel manufacturing ${index + 1}`}
+//               className="w-full h-full object-cover"
+//               style={{ filter: 'brightness(0.9) contrast(1.2)' }}
+//             />
+//           </div>
+//         ))}
+//       </div>
+
+//       {/* Animated Particles */}
+//       <div className="absolute inset-0 z-5">
+//         <div className="absolute top-20 left-20 w-2 h-2 bg-blue-400 rounded-full animate-pulse opacity-50"></div>
+//         <div className="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-white rounded-full animate-pulse opacity-40"></div>
+//         <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-blue-300 rounded-full animate-pulse opacity-60"></div>
+//         <div className="absolute bottom-1/3 right-1/5 w-1 h-1 bg-white rounded-full animate-pulse opacity-30"></div>
+//       </div>
+
+//       {/* Main Content */}
+//       <div className="relative z-20 container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 flex flex-col justify-center py-16 sm:py-20">
+//         <div className="max-w-6xl mx-auto w-full">
+//           {/* Company Badge */}
+//           <div
+//             className={`inline-block mb-4 sm:mb-6 bg-blue-700/20 backdrop-blur-lg px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg border border-blue-500/30 transition-all duration-1000 ${
+//               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+//             }`}
+//           >
+//             <span className="text-blue-200 font-semibold text-sm sm:text-base tracking-wide uppercase">
+//               Leading Steel Supplier Since 2005
+//             </span>
+//           </div>
+
+//           {/* Main Heading */}
+//           <div
+//             className={`mb-6 sm:mb-8 transition-all duration-1000 delay-200 ${
+//               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+//             }`}
+//           >
+//             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-3 sm:mb-4 leading-tight tracking-tight text-white drop-shadow-2xl">
+//               <span className="block bg-gradient-to-r from-white to-blue-300 bg-clip-text text-transparent">
+//                 SAWARIYA
+//               </span>
+//               <span className="block bg-gradient-to-r from-white to-blue-300 bg-clip-text text-transparent">
+//                 TRADERS
+//               </span>
+//             </h1>
+//             <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-light text-blue-100 tracking-wide">
+//               Your Trusted Partner in Steel Excellence
+//             </p>
+//           </div>
+
+//           {/* Description */}
+//           <div
+//             className={`mb-6 sm:mb-8 transition-all duration-1000 delay-300 ${
+//               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+//             }`}
+//           >
+//             <p className="text-base sm:text-lg md:text-xl text-gray-100 max-w-2xl leading-relaxed">
+//               Delivering premium-grade steel solutions for construction and industrial applications, crafted with precision and backed by decades of expertise.
+//             </p>
+//           </div>
+
+//           {/* Contact Information */}
+//           <div
+//             className={`mb-6 sm:mb-8 transition-all duration-1000 delay-400 ${
+//               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+//             }`}
+//           >
+//             <div className="flex flex-col gap-4 sm:gap-6">
+//               <div className="flex items-start sm:items-center gap-3 sm:gap-4 text-gray-100">
+//                 <div className="bg-blue-700/20 p-2 sm:p-3 rounded-full flex-shrink-0">
+//                   <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-blue-400" />
+//                 </div>
+//                 <span className="text-sm sm:text-base leading-relaxed">
+//                   Choudhry Dhram Kanta, Govindgarh Road, Ramgarh, Alwar (Raj.)
+//                 </span>
+//               </div>
+//               <div className="flex items-center gap-3 sm:gap-4 text-gray-100">
+//                 <div className="bg-blue-700/20 p-2 sm:p-3 rounded-full">
+//                   <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-blue-400" />
+//                 </div>
+//                 <a
+//                   href={`tel:+91${whatsappNumber}`}
+//                   className="hover:text-blue-400 transition-colors text-sm sm:text-base font-medium"
+//                 >
+//                   +91 87082 75179
+//                 </a>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Action Buttons */}
+//           <div
+//             className={`mb-8 sm:mb-12 transition-all duration-1000 delay-500 ${
+//               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+//             }`}
+//           >
+//             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+//               <Link to="/quote" aria-label="Request a Quote">
+//                 <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-sm sm:text-base shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center justify-center gap-2">
+//                   <FileText className="h-4 w-4 sm:h-5 sm:w-5" />
+//                   Request a Quote
+//                 </button>
+//               </Link>
+//               <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+//                 <button className="w-full bg-green-600 hover:bg-green-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-sm sm:text-base shadow-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center justify-center gap-2">
+//                   <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="currentColor" viewBox="0 0 24 24">
+//                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.297-.445.099-.149.099-.347-.025-.496-.124-.149-.546-.694-.892-1.04-.346-.347-.669-.347-.966-.347-.297 0-.496.099-.669.297-.173.198-.669.793-.669 1.937 0 1.144.793 2.258.892 2.406.099.149 1.427 2.159 3.465 3.028.495.223.892.396 1.238.495.347.099.644.099.842.05.297-.099.892-.396 1.04-.694.149-.297.297-.595.297-.892 0-.297-.124-.496-.421-.645zM12 1.5C6.201 1.5 1.5 6.201 1.5 12c0 1.834.474 3.557 1.304 5.07L1.5 21l3.96-1.287A10.46 10.46 0 0012 22.5c5.799 0 10.5-4.701 10.5-10.5S17.799 1.5 12 1.5z" />
+//                   </svg>
+//                   Chat on WhatsApp
+//                 </button>
+//               </a>
+//               <Link to="/products" aria-label="Explore Products">
+//                 <button className="bg-transparent border-2 border-blue-500 text-blue-400 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-sm sm:text-base hover:bg-blue-500/20 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
+//                   <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5" />
+//                   Explore Products
+//                 </button>
+//               </Link>
+//             </div>
+//           </div>
+
+//           {/* Trust Indicators */}
+//           <div
+//             className={`mb-8 sm:mb-12 transition-all duration-1000 delay-600 ${
+//               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+//             }`}
+//           >
+//             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+//               {trustIndicators.map((indicator, index) => (
+//                 <div key={index} className="flex flex-col items-center gap-2 sm:gap-3 text-center">
+//                   <div className="bg-blue-700/20 p-3 sm:p-4 rounded-full backdrop-blur-lg border border-blue-500/30">
+//                     <indicator.icon className="h-5 w-5 sm:h-6 sm:w-6 text-blue-400" />
+//                   </div>
+//                   <span className="text-xs sm:text-sm font-medium text-gray-100">{indicator.text}</span>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+
+//           {/* Stats Section */}
+//           <div
+//             className={`transition-all duration-1000 delay-700 ${
+//               isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+//             }`}
+//           >
+//             <StatsSection />
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Scroll Down Indicator */}
+//       <div
+//         className={`absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer transition-all duration-1000 delay-800 ${
+//           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+//         }`}
+//         onClick={scrollToNextSection}
+//       >
+//         <div className="flex flex-col items-center">
+//           <span className="text-gray-200 text-sm sm:text-base font-medium mb-1 sm:mb-2">Explore More</span>
+//           <div className="animate-bounce">
+//             <ChevronDown className="h-6 w-6 sm:h-8 sm:w-8 text-blue-400" />
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Floating WhatsApp Button */}
+//       <FloatingWhatsApp />
+//     </section>
+//   );
+// }
 
 // import React, { useState, useEffect } from "react";
 // import { motion } from "framer-motion";

@@ -1,53 +1,23 @@
-
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import {
-  Phone,
-  Mail,
-  MapPin,
-  ArrowRight,
-  Send,
-  Clock,
-  Calendar,
-  Star,
-  ChevronUp,
-  Facebook,
-  Linkedin,
-  Instagram,
-  Shield,
-  Award,
-  Globe,
-  Zap,
-  TrendingUp
+  Phone, Mail, MapPin, ArrowRight, Send, Clock, Star, ChevronUp,
+  Facebook, Linkedin, Instagram, Shield, Award, Globe, Factory,
+  Building, Truck, Settings, Zap, TrendingUp
 } from "lucide-react";
-import WhatsAppButton from "../common/WhatsAppButton";
-import Logo from "../common/Logo";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [subscribeSuccess, setSubscribeSuccess] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const navigate = useNavigate();
-
-  /* =========  SCROLL HELPERS  ========= */
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
-  const scrollToSection = (path, sectionId) => {
-    navigate(path);
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-      else scrollToTop(); // fallback
-    }, 0);
-  };
-  /* ==================================== */
 
   useEffect(() => {
     const handleScroll = () => setShowScrollTop(window.scrollY > 500);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   const handleEmailSubmit = (e) => {
     e.preventDefault();
@@ -60,255 +30,631 @@ export default function Footer() {
     }, 1000);
   };
 
-  const footerLinks = [
-    {
-      title: "Quick Links",
-      links: [
-        { name: "Home", path: "/", id: "home" },
-        { name: "About Us", path: "/about", id: "about" },
-        { name: "Products", path: "/products", id: "products" },
-        { name: "Why Choose Us", path: "/why-choose-us", id: "why-choose-us" },
-        { name: "Steel Calculator", path: "/calculator", id: "calculator" },
-        { name: "Contact", path: "/contact", id: "contact" },
-      ],
-    },
-    {
-      title: "Products",
-      links: [
-        { name: "MS Pipe ", path: "/products",  id: "products" },
-        { name: "MS/SS Sheets", path: "/products/sheets",  id: "products" },
-        { name: "Pipes & Tubes", path: "/products/pipes", id: "products" },
-        { name: "View All Products", path: "/products",  id: "products" },
-      ],
-    },
-    {
-      title: "Resources",
-      links: [
-        { name: "Steel Price Index", path: "/resources/price-index" },
-        { name: "Blog & News", path: "/blog" },
-        { name: "FAQs", path: "/faqs" },
-        { name: "Privacy Policy", path: "/privacy-policy" },
-        { name: "Terms & Conditions", path: "/terms-conditions" },
-      ],
-    },
+  const handleLinkClick = (path) => {
+    console.log(`Navigate to: ${path}`);
+    // In a real app, you'd use your router here
+  };
+
+  const quickLinks = [
+    { name: "TMT Rebars", path: "/products" },
+    { name: "Structural Steel", path: "/products" },
+    { name: "Steel Plates", path: "/products/plates" },
+    { name: "Custom Solutions", path: "/products/custom" },
+    { name: "Price Calculator", path: "/calculator" },
+    { name: "Request Quote", path: "/quote" }
   ];
 
-  const businessHours = [
-    { day: "Monday - Friday", hours: "9:00 AM - 6:30 PM" },
-    { day: "Saturday", hours: "9:30 AM - 5:00 PM" },
-    { day: "Sunday", hours: "Closed" },
-  ];
-
-  const certifications = [
-    { name: "ISO 9001:2015", icon: <Award className="w-4 h-4" /> },
-    { name: "BIS Certified", icon: <Shield className="w-4 h-4" /> },
-    { name: "CE Marking", icon: <Globe className="w-4 h-4" /> },
-  ];
+  const steelBrands = ["SAIL", "TATA", "JSW Neo", "JINDAL", "KAMDHENU", "RATHI"];
 
   return (
-    <footer className="relative bg-gradient-to-b from-blue-900 via-blue-800 to-blue-950 text-white">
-      {/* Scroll-to-top button */}
+    <footer className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Ccircle cx='7' cy='7' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }} />
+      </div>
+
+      {/* Scroll to Top Button */}
       {showScrollTop && (
         <button
-          onClick={() => scrollToTop()}
-          className="fixed bottom-6 right-6 z-50 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all"
-          aria-label="Scroll to top"
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-50 p-3 bg-blue-600 text-white rounded-full shadow-2xl hover:bg-blue-700 transition-all transform hover:scale-110 hover:rotate-12"
         >
           <ChevronUp className="h-5 w-5" />
         </button>
       )}
 
-      {/* CTA Section */}
-      <div className="relative z-10 container mx-auto px-4 py-16">
-        <div className="bg-gradient-to-r from-blue-700 to-blue-800 rounded-2xl shadow-xl p-8 md:p-12">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="inline-block px-4 py-2 mb-4 bg-white/10 rounded-full text-white font-semibold">
-                <TrendingUp className="inline-block w-4 h-4 mr-2" />
-                Trusted by 5000+ Contractors
+      {/* Newsletter Section */}
+      <div className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700">
+        <div className="container mx-auto px-6 py-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center px-4 py-2 mb-6 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold">
+                <Factory className="w-4 h-4 mr-2" />
+                Premium Steel Solutions Since 2025
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Get Premium Steel Delivered Across Rajasthan & Beyond
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                Stay Updated with
+                <span className="block bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
+                  Steel Market Trends
+                </span>
               </h2>
-              <p className="text-blue-100 mb-6 text-lg">
-                18+ years of excellence in steel supply. Request instant quotes with real-time pricing!
+              <p className="text-xl text-blue-100 mb-8">
+                Get daily steel prices, market insights & exclusive deals delivered to your inbox
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  to="/quote"
-                  className="px-6 py-3 bg-white text-blue-700 font-bold rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
-                >
-                  Get Free Quote
-                </Link>
-                <WhatsAppButton />
-              </div>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <h3 className="text-2xl font-bold text-white mb-4">Stay Updated</h3>
-              <p className="text-blue-100 mb-4">Get daily steel prices & exclusive offers</p>
-              <form onSubmit={handleEmailSubmit} className="space-y-3">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                  required
-                />
+            <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20">
+              <div className="space-y-6">
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Enter your business email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-6 py-4 bg-white/90 text-gray-800 rounded-2xl focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all placeholder-gray-500"
+                    required
+                  />
+                </div>
                 <button
-                  type="submit"
+                  onClick={handleEmailSubmit}
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center px-4 py-3 bg-white text-blue-700 font-semibold rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-70"
+                  className="w-full flex items-center justify-center px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 font-bold rounded-2xl hover:from-yellow-300 hover:to-orange-400 transition-all transform hover:scale-105 shadow-lg"
                 >
                   {isSubmitting ? (
-                    <div className="w-5 h-5 border-2 border-blue-700 border-t-transparent rounded-full animate-spin" />
+                    <div className="w-5 h-5 border-2 border-gray-800 border-t-transparent rounded-full animate-spin" />
                   ) : subscribeSuccess ? (
-                    "✓ Subscribed!"
+                    "✓ Successfully Subscribed!"
                   ) : (
                     <>
-                      Subscribe Now <Send className="w-4 h-4 ml-2" />
+                      Subscribe Now <Send className="w-5 h-5 ml-2" />
                     </>
                   )}
                 </button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Footer */}
-      <div className="relative z-10 container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Company Info */}
-          <div className="lg:col-span-2">
-            <Logo variant="dark" size="large" />
-            <p className="my-4 text-blue-100 max-w-md">
-              Leading steel supplier in Rajasthan with 18+ years of expertise, serving 5 states with premium quality steel products.
-            </p>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-blue-300" />
-                <a href="tel:+918708275179" className="text-blue-100 hover:text-white transition-colors">
-                  +91 87082 75179
-                </a>
+      {/* Main Footer Content */}
+      <div className="relative">
+        <div className="container mx-auto px-6 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+            
+            {/* Company Info */}
+            <div className="lg:col-span-2">
+              <div className="mb-8">
+                <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent mb-4">
+                  Hariom Steel Infra
+                </h3>
+                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                  Leading authorized JSW Neo Steel distributor specializing in TMT Rebars, 
+                  structural steel, and comprehensive steel solutions across India.
+                </p>
               </div>
-              <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-blue-300" />
-                <a href="mailto:info@sawariyatraders.com" className="text-blue-100 hover:text-white transition-colors">
-                  info@sawariyatraders.com
-                </a>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-blue-300 mt-1" />
-                <address className="not-italic text-blue-100">
-                  Choudhry Dhram Kanta<br />
-                  Govindgarh Road, Ramgarh<br />
-                  Alwar, Rajasthan 301019
-                </address>
-              </div>
-            </div>
-            <div className="flex gap-3 mt-6">
-              <a href="https://facebook.com/sawariyatraders" className="p-2 bg-blue-700 rounded-full hover:bg-blue-600 transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="https://instagram.com/sawariyatraders" className="p-2 bg-blue-700 rounded-full hover:bg-blue-600 transition-colors">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="https://linkedin.com/company/sawariyatraders" className="p-2 bg-blue-700 rounded-full hover:bg-blue-600 transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
 
-          {/* Footer Links */}
-          {footerLinks.map((section, idx) => (
-            <div key={idx}>
-              <h4 className="text-lg font-bold text-blue-300 mb-4">{section.title}</h4>
-              <ul className="space-y-2">
-                {section.links.map((link, linkIdx) => (
-                  <li key={linkIdx}>
-                    <Link
-                      to={link.path}
-                      onClick={
-                        link.id
-                          ? (e) => {
-                              e.preventDefault();
-                              scrollToSection(link.path, link.id);
-                            }
-                          : undefined
-                      }
-                      className="flex items-center text-blue-100 hover:text-white transition-colors group"
+              {/* Contact Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                  <div className="flex items-center mb-4">
+                    <Phone className="w-6 h-6 text-blue-400 mr-3" />
+                    <span className="text-gray-300 font-medium">Call Us</span>
+                  </div>
+                  <div className="space-y-2">
+                    <a href="tel:+919312236954" className="block text-white hover:text-blue-400 transition-colors font-semibold">
+                      +91 93122 36954
+                    </a>
+                    <a href="tel:+919312240849" className="block text-gray-300 hover:text-blue-400 transition-colors">
+                      +91 93122 40849
+                    </a>
+                  </div>
+                </div>
+
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                  <div className="flex items-center mb-4">
+                    <Mail className="w-6 h-6 text-blue-400 mr-3" />
+                    <span className="text-gray-300 font-medium">Email</span>
+                  </div>
+                  <a 
+                    href="mailto:hariomsteelinfra@gmail.com" 
+                    className="text-white hover:text-blue-400 transition-colors font-semibold"
+                  >
+                    hariomsteelinfra@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              {/* Social Links */}
+              <div className="flex gap-4">
+                {[
+                  { icon: Facebook, href: "https://facebook.com/hariomsteelinfra", color: "hover:bg-blue-600" },
+                  { icon: Instagram, href: "https://instagram.com/hariomsteelinfra", color: "hover:bg-pink-600" },
+                  { icon: Linkedin, href: "https://linkedin.com/company/hariomsteelinfra", color: "hover:bg-blue-700" }
+                ].map(({ icon: Icon, href, color }, idx) => (
+                  <a
+                    key={idx}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl flex items-center justify-center ${color} transition-all transform hover:scale-110`}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-xl font-bold mb-6 text-blue-400">Quick Links</h4>
+              <ul className="space-y-3">
+                {quickLinks.map((link, idx) => (
+                  <li key={idx}>
+                    <button
+                      onClick={() => handleLinkClick(link.path)}
+                      className="flex items-center text-gray-300 hover:text-white transition-all group w-full text-left"
                     >
-                      <span>{link.name}</span>
-                      <ArrowRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </Link>
+                      <ArrowRight className="w-4 h-4 mr-3 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1" />
+                      <span className="group-hover:translate-x-2 transition-transform">{link.name}</span>
+                    </button>
                   </li>
                 ))}
               </ul>
             </div>
-          ))}
 
-          {/* Business Hours */}
-          <div>
-            <h4 className="text-lg font-bold text-blue-300 mb-4">Operating Hours</h4>
-            <ul className="space-y-2">
-              {businessHours.map((item, idx) => (
-                <li key={idx} className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-blue-300" />
-                  <div>
-                    <p className="font-medium text-blue-100">{item.day}</p>
-                    <p className="text-blue-200 text-sm">{item.hours}</p>
+            {/* Steel Brands & Info */}
+            <div>
+              <h4 className="text-xl font-bold mb-6 text-blue-400">Steel Brands</h4>
+              <div className="grid grid-cols-2 gap-3 mb-8">
+                {steelBrands.map((brand, idx) => (
+                  <div key={idx} className="bg-white/5 backdrop-blur-sm rounded-lg p-3 text-center border border-white/10 hover:border-blue-400/50 transition-all">
+                    <span className="text-gray-300 font-medium text-sm">{brand}</span>
                   </div>
-                </li>
-              ))}
-            </ul>
-            <h4 className="text-lg font-bold text-blue-300 mt-6 mb-3">Certifications</h4>
-            <div className="space-y-2">
-              {certifications.map((cert, idx) => (
-                <div key={idx} className="flex items-center gap-2 text-sm">
-                  {cert.icon}
-                  <span className="text-blue-100">{cert.name}</span>
+                ))}
+              </div>
+
+              {/* Business Hours */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <div className="flex items-center mb-4">
+                  <Clock className="w-6 h-6 text-blue-400 mr-3" />
+                  <span className="font-semibold text-white">Business Hours</span>
+                </div>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-300">Mon - Fri</span>
+                    <span className="text-white">9:00 AM - 6:30 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-300">Saturday</span>
+                    <span className="text-white">9:30 AM - 5:00 PM</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-300">Sunday</span>
+                    <span className="text-red-400">Closed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats Section */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-16 pt-12 border-t border-white/10">
+            {[
+              { value: "Pan India", label: "Delivery", icon: Globe, color: "text-blue-400" },
+              { value: "Premium", label: "Quality", icon: Award, color: "text-yellow-400" },
+              { value: "All Sizes", label: "Available", icon: Settings, color: "text-green-400" },
+              { value: "24/7", label: "Support", icon: Truck, color: "text-purple-400" }
+            ].map((stat, idx) => (
+              <div key={idx} className="text-center group">
+                <div className={`inline-flex items-center justify-center w-16 h-16 bg-white/5 backdrop-blur-sm rounded-2xl mb-4 group-hover:scale-110 transition-transform ${stat.color}`}>
+                  <stat.icon className="w-8 h-8" />
+                </div>
+                <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-gray-400">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Office Locations */}
+          <div className="mt-16 pt-12 border-t border-white/10">
+            <h4 className="text-2xl font-bold mb-8 text-center bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+              Our Locations
+            </h4>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { 
+                  city: "New Delhi", 
+                  address: "D-1/115 Phase-2, Mayapuri Industrial Area, New Delhi-110064",
+                  type: "Head Office"
+                },
+                {
+                  city: "New Delhi",
+                  address: "KHASRA NO. - 634, Hiran Kudna Village, Muneka, New Delhi - 110041",
+                  type: "Warehouse"
+                },
+                {
+                  city: "Ghaziabad",
+                  address: "E-126, Bulandshahr Road, Loha Mandi, Industrial Area, Ghaziabad, UP-201009",
+                  type: "Branch Office"
+                }
+              ].map((office, idx) => (
+                <div key={idx} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-blue-400/50 transition-all transform hover:-translate-y-1">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mr-4">
+                      <Building className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h5 className="font-bold text-white">{office.city}</h5>
+                      <span className="text-blue-400 text-sm font-medium">{office.type}</span>
+                    </div>
+                  </div>
+                  <address className="not-italic text-gray-300 text-sm leading-relaxed">
+                    {office.address}
+                  </address>
                 </div>
               ))}
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Stats */}
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { value: "5000+", label: "Happy Clients", icon: <Zap className="w-5 h-5" /> },
-            { value: "50+", label: "Steel Grades", icon: <Shield className="w-5 h-5" /> },
-            { value: "18+", label: "Years Experience", icon: <Award className="w-5 h-5" /> },
-            { value: "24/7", label: "Support", icon: <Globe className="w-5 h-5" /> },
-          ].map((stat, idx) => (
-            <div key={idx} className="text-center p-4 bg-blue-800 rounded-lg">
-              <div className="flex justify-center mb-1 text-blue-300">{stat.icon}</div>
-              <div className="text-xl font-bold text-white">{stat.value}</div>
-              <div className="text-xs text-blue-200">{stat.label}</div>
-            </div>
-          ))}
+      {/* Secondary Steel Products */}
+      <div className="relative border-t border-white/10 bg-black/10 backdrop-blur-sm">
+        <div className="container mx-auto px-6 py-12">
+          <h4 className="text-xl font-bold text-center mb-8 text-blue-400">Secondary Steel Brands</h4>
+          <div className="flex flex-wrap justify-center gap-3">
+            {["RASHMI", "RATHI", "KAMDHENU", "JINDAL", "PRIME GOLD", "SWROOP", "RANA", "K.L", "CENTURY"].map((brand, idx) => (
+              <div key={idx} className="bg-white/5 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/10 hover:border-blue-400/50 transition-all transform hover:scale-105">
+                <span className="text-gray-300 text-sm font-medium">{brand}</span>
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
 
-        {/* Copyright */}
-        <div className="mt-12 pt-8 border-t border-blue-700 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-blue-200 text-sm">
-            © {new Date().getFullYear()} Sawariya Traders. All rights reserved.
-          </p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <Link to="/privacy-policy" className="text-sm text-blue-200 hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link to="/terms-conditions" className="text-sm text-blue-200 hover:text-white transition-colors">
-              Terms & Conditions
-            </Link>
+      {/* Bottom Bar */}
+      <div className="relative border-t border-white/10 bg-black/20 backdrop-blur-sm">
+        <div className="container mx-auto px-6 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <p className="text-gray-300">
+                © {new Date().getFullYear()} Hariom Steel Infra Pvt Ltd. All rights reserved.
+              </p>
+              <div className="flex items-center gap-2 text-xs text-gray-400">
+                <span>CIN: U24109DL2025PTC442911</span>
+                <span className="hidden md:inline">•</span>
+                <span>PAN: AAHCH7554G</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-6">
+              <button onClick={() => handleLinkClick('/privacy-policy')} className="text-gray-400 hover:text-white transition-colors text-sm">
+                Privacy
+              </button>
+              <button onClick={() => handleLinkClick('/terms-conditions')} className="text-gray-400 hover:text-white transition-colors text-sm">
+                Terms
+              </button>
+              <span className="text-blue-400 text-sm font-medium">
+                Feel free to reach out! 🚀
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </footer>
   );
 }
+// import React, { useState, useEffect } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import {
+//   Phone,
+//   Mail,
+//   MapPin,
+//   ArrowRight,
+//   Send,
+//   Clock,
+//   Calendar,
+//   Star,
+//   ChevronUp,
+//   Facebook,
+//   Linkedin,
+//   Instagram,
+//   Shield,
+//   Award,
+//   Globe,
+//   Zap,
+//   TrendingUp
+// } from "lucide-react";
+// import WhatsAppButton from "../common/WhatsAppButton";
+// import Logo from "../common/Logo";
+
+// export default function Footer() {
+//   const [email, setEmail] = useState("");
+//   const [isSubmitting, setIsSubmitting] = useState(false);
+//   const [subscribeSuccess, setSubscribeSuccess] = useState(false);
+//   const [showScrollTop, setShowScrollTop] = useState(false);
+//   const navigate = useNavigate();
+
+//   /* =========  SCROLL HELPERS  ========= */
+//   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+//   const scrollToSection = (path, sectionId) => {
+//     navigate(path);
+//     setTimeout(() => {
+//       const el = document.getElementById(sectionId);
+//       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+//       else scrollToTop(); // fallback
+//     }, 0);
+//   };
+//   /* ==================================== */
+
+//   useEffect(() => {
+//     const handleScroll = () => setShowScrollTop(window.scrollY > 500);
+//     window.addEventListener("scroll", handleScroll);
+//     return () => window.removeEventListener("scroll", handleScroll);
+//   }, []);
+
+//   const handleEmailSubmit = (e) => {
+//     e.preventDefault();
+//     setIsSubmitting(true);
+//     setTimeout(() => {
+//       setIsSubmitting(false);
+//       setSubscribeSuccess(true);
+//       setEmail("");
+//       setTimeout(() => setSubscribeSuccess(false), 3000);
+//     }, 1000);
+//   };
+
+//   const footerLinks = [
+//     {
+//       title: "Quick Links",
+//       links: [
+//         { name: "Home", path: "/", id: "home" },
+//         { name: "About Us", path: "/about", id: "about" },
+//         { name: "Products", path: "/products", id: "products" },
+//         { name: "Why Choose Us", path: "/why-choose-us", id: "why-choose-us" },
+//         { name: "Steel Calculator", path: "/calculator", id: "calculator" },
+//         { name: "Contact", path: "/contact", id: "contact" },
+//       ],
+//     },
+//     {
+//       title: "Products",
+//       links: [
+//         { name: "MS Pipe ", path: "/products",  id: "products" },
+//         { name: "MS/SS Sheets", path: "/products/sheets",  id: "products" },
+//         { name: "Pipes & Tubes", path: "/products/pipes", id: "products" },
+//         { name: "View All Products", path: "/products",  id: "products" },
+//       ],
+//     },
+//     {
+//       title: "Resources",
+//       links: [
+//         { name: "Steel Price Index", path: "/resources/price-index" },
+//         { name: "Blog & News", path: "/blog" },
+//         { name: "FAQs", path: "/faqs" },
+//         { name: "Privacy Policy", path: "/privacy-policy" },
+//         { name: "Terms & Conditions", path: "/terms-conditions" },
+//       ],
+//     },
+//   ];
+
+//   const businessHours = [
+//     { day: "Monday - Friday", hours: "9:00 AM - 6:30 PM" },
+//     { day: "Saturday", hours: "9:30 AM - 5:00 PM" },
+//     { day: "Sunday", hours: "Closed" },
+//   ];
+
+//   const certifications = [
+//     { name: "ISO 9001:2015", icon: <Award className="w-4 h-4" /> },
+//     { name: "BIS Certified", icon: <Shield className="w-4 h-4" /> },
+//     { name: "CE Marking", icon: <Globe className="w-4 h-4" /> },
+//   ];
+
+//   return (
+//     <footer className="relative bg-gradient-to-b from-blue-900 via-blue-800 to-blue-950 text-white">
+//       {/* Scroll-to-top button */}
+//       {showScrollTop && (
+//         <button
+//           onClick={() => scrollToTop()}
+//           className="fixed bottom-6 right-6 z-50 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all"
+//           aria-label="Scroll to top"
+//         >
+//           <ChevronUp className="h-5 w-5" />
+//         </button>
+//       )}
+
+//       {/* CTA Section */}
+//       <div className="relative z-10 container mx-auto px-4 py-16">
+//         <div className="bg-gradient-to-r from-blue-700 to-blue-800 rounded-2xl shadow-xl p-8 md:p-12">
+//           <div className="grid lg:grid-cols-2 gap-8 items-center">
+//             <div>
+//               <div className="inline-block px-4 py-2 mb-4 bg-white/10 rounded-full text-white font-semibold">
+//                 <TrendingUp className="inline-block w-4 h-4 mr-2" />
+//                 Trusted by 5000+ Contractors
+//               </div>
+//               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+//                 Get Premium Steel Delivered Across Rajasthan & Beyond
+//               </h2>
+//               <p className="text-blue-100 mb-6 text-lg">
+//                 18+ years of excellence in steel supply. Request instant quotes with real-time pricing!
+//               </p>
+//               <div className="flex flex-wrap gap-4">
+//                 <Link
+//                   to="/quote"
+//                   className="px-6 py-3 bg-white text-blue-700 font-bold rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+//                 >
+//                   Get Free Quote
+//                 </Link>
+//                 <WhatsAppButton />
+//               </div>
+//             </div>
+
+//             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+//               <h3 className="text-2xl font-bold text-white mb-4">Stay Updated</h3>
+//               <p className="text-blue-100 mb-4">Get daily steel prices & exclusive offers</p>
+//               <form onSubmit={handleEmailSubmit} className="space-y-3">
+//                 <input
+//                   type="email"
+//                   placeholder="Enter your email"
+//                   value={email}
+//                   onChange={(e) => setEmail(e.target.value)}
+//                   className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
+//                   required
+//                 />
+//                 <button
+//                   type="submit"
+//                   disabled={isSubmitting}
+//                   className="w-full flex items-center justify-center px-4 py-3 bg-white text-blue-700 font-semibold rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-70"
+//                 >
+//                   {isSubmitting ? (
+//                     <div className="w-5 h-5 border-2 border-blue-700 border-t-transparent rounded-full animate-spin" />
+//                   ) : subscribeSuccess ? (
+//                     "✓ Subscribed!"
+//                   ) : (
+//                     <>
+//                       Subscribe Now <Send className="w-4 h-4 ml-2" />
+//                     </>
+//                   )}
+//                 </button>
+//               </form>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* Main Footer */}
+//       <div className="relative z-10 container mx-auto px-4 py-12">
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+//           {/* Company Info */}
+//           <div className="lg:col-span-2">
+//             <Logo variant="dark" size="large" />
+//             <p className="my-4 text-blue-100 max-w-md">
+//               Leading steel supplier in Rajasthan with 18+ years of expertise, serving 5 states with premium quality steel products.
+//             </p>
+//             <div className="space-y-3">
+//               <div className="flex items-center gap-3">
+//                 <Phone className="w-5 h-5 text-blue-300" />
+//                 <a href="tel:+918708275179" className="text-blue-100 hover:text-white transition-colors">
+//                   +91 87082 75179
+//                 </a>
+//               </div>
+//               <div className="flex items-center gap-3">
+//                 <Mail className="w-5 h-5 text-blue-300" />
+//                 <a href="mailto:info@sawariyatraders.com" className="text-blue-100 hover:text-white transition-colors">
+//                   info@sawariyatraders.com
+//                 </a>
+//               </div>
+//               <div className="flex items-start gap-3">
+//                 <MapPin className="w-5 h-5 text-blue-300 mt-1" />
+//                 <address className="not-italic text-blue-100">
+//                   Choudhry Dhram Kanta<br />
+//                   Govindgarh Road, Ramgarh<br />
+//                   Alwar, Rajasthan 301019
+//                 </address>
+//               </div>
+//             </div>
+//             <div className="flex gap-3 mt-6">
+//               <a href="https://facebook.com/sawariyatraders" className="p-2 bg-blue-700 rounded-full hover:bg-blue-600 transition-colors">
+//                 <Facebook className="w-5 h-5" />
+//               </a>
+//               <a href="https://instagram.com/sawariyatraders" className="p-2 bg-blue-700 rounded-full hover:bg-blue-600 transition-colors">
+//                 <Instagram className="w-5 h-5" />
+//               </a>
+//               <a href="https://linkedin.com/company/sawariyatraders" className="p-2 bg-blue-700 rounded-full hover:bg-blue-600 transition-colors">
+//                 <Linkedin className="w-5 h-5" />
+//               </a>
+//             </div>
+//           </div>
+
+//           {/* Footer Links */}
+//           {footerLinks.map((section, idx) => (
+//             <div key={idx}>
+//               <h4 className="text-lg font-bold text-blue-300 mb-4">{section.title}</h4>
+//               <ul className="space-y-2">
+//                 {section.links.map((link, linkIdx) => (
+//                   <li key={linkIdx}>
+//                     <Link
+//                       to={link.path}
+//                       onClick={
+//                         link.id
+//                           ? (e) => {
+//                               e.preventDefault();
+//                               scrollToSection(link.path, link.id);
+//                             }
+//                           : undefined
+//                       }
+//                       className="flex items-center text-blue-100 hover:text-white transition-colors group"
+//                     >
+//                       <span>{link.name}</span>
+//                       <ArrowRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+//                     </Link>
+//                   </li>
+//                 ))}
+//               </ul>
+//             </div>
+//           ))}
+
+//           {/* Business Hours */}
+//           <div>
+//             <h4 className="text-lg font-bold text-blue-300 mb-4">Operating Hours</h4>
+//             <ul className="space-y-2">
+//               {businessHours.map((item, idx) => (
+//                 <li key={idx} className="flex items-center gap-2">
+//                   <Clock className="w-4 h-4 text-blue-300" />
+//                   <div>
+//                     <p className="font-medium text-blue-100">{item.day}</p>
+//                     <p className="text-blue-200 text-sm">{item.hours}</p>
+//                   </div>
+//                 </li>
+//               ))}
+//             </ul>
+//             <h4 className="text-lg font-bold text-blue-300 mt-6 mb-3">Certifications</h4>
+//             <div className="space-y-2">
+//               {certifications.map((cert, idx) => (
+//                 <div key={idx} className="flex items-center gap-2 text-sm">
+//                   {cert.icon}
+//                   <span className="text-blue-100">{cert.name}</span>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Stats */}
+//         <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+//           {[
+//             { value: "5000+", label: "Happy Clients", icon: <Zap className="w-5 h-5" /> },
+//             { value: "50+", label: "Steel Grades", icon: <Shield className="w-5 h-5" /> },
+//             { value: "18+", label: "Years Experience", icon: <Award className="w-5 h-5" /> },
+//             { value: "24/7", label: "Support", icon: <Globe className="w-5 h-5" /> },
+//           ].map((stat, idx) => (
+//             <div key={idx} className="text-center p-4 bg-blue-800 rounded-lg">
+//               <div className="flex justify-center mb-1 text-blue-300">{stat.icon}</div>
+//               <div className="text-xl font-bold text-white">{stat.value}</div>
+//               <div className="text-xs text-blue-200">{stat.label}</div>
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* Copyright */}
+//         <div className="mt-12 pt-8 border-t border-blue-700 flex flex-col md:flex-row justify-between items-center">
+//           <p className="text-blue-200 text-sm">
+//             © {new Date().getFullYear()} Sawariya Traders. All rights reserved.
+//           </p>
+//           <div className="flex gap-6 mt-4 md:mt-0">
+//             <Link to="/privacy-policy" className="text-sm text-blue-200 hover:text-white transition-colors">
+//               Privacy Policy
+//             </Link>
+//             <Link to="/terms-conditions" className="text-sm text-blue-200 hover:text-white transition-colors">
+//               Terms & Conditions
+//             </Link>
+//           </div>
+//         </div>
+//       </div>
+//     </footer>
+//   );
+// }
 
 // "use client"
 // import React, { useState, useEffect } from "react"
